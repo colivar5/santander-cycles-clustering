@@ -66,6 +66,9 @@ td.q { font-style: italic; min-width: 320px; }
 .ref { font-size: 14px; overflow-wrap: anywhere; }
 .ref .meta { color: var(--muted); font-size: 13px; }
 .pending { color: var(--muted); font-style: italic; font-size: 14px; }
+.check { font-family: var(--mono); font-size: 11px; color: var(--ok); }
+.check.warn { color: var(--flag); }
+.banner { display: grid; gap: 6px; }
 a { color: var(--accent); }
 .decks { display: grid; gap: 8px; }
 .err { color: var(--flag); }
@@ -157,6 +160,7 @@ a { color: var(--accent); }
         p.append(el("div", "meta", [r.channel, r.duration, r.year, r.level].filter(Boolean).join(" · ")));
         if (r.note) p.append(el("div", "meta", r.note));
       }
+      if (r.check) p.append(el("div", "check" + (/NOT/.test(r.check) ? " warn" : ""), r.check));
       d.append(p);
     }
     return d;
@@ -168,6 +172,7 @@ a { color: var(--accent); }
     const decks = el("div", "decks"); decks.append(el("h3", "", "Course decks"));
     for (const [k, d] of Object.entries(c.decks)) decks.append(el("div", "ref", k + " = " + d.title + " (" + d.file + "). " + d.note));
     root.append(decks);
+    if (DATA.refs && DATA.refs.limits) { const b = el("div", "banner"); for (const l of DATA.refs.limits) b.append(el("p", "", l)); root.append(b); }
     const f = el("div", "filters"); f.setAttribute("role", "group"); f.setAttribute("aria-label", "Filter by part of the project");
     const groups = [{ key: "all", name: "All" }, ...c.groups.map((g) => ({ key: g.key, name: g.name + " " + g.brief }))];
     for (const g of groups) {
@@ -190,7 +195,7 @@ a { color: var(--accent); }
       if (k.gap) card.append(el("p", "gap", k.gap));
       const pj = el("div"); pj.append(el("h3", "", "In this project"), el("p", "", k.project)); card.append(pj);
       const refs = el("div", "refs");
-      const R = DATA.refs || {};
+        const R = DATA.refs || {};
       refs.append(refItems(R.texts && R.texts[k.key], "texts"), refItems(R.videos && R.videos[k.key], "videos"));
       card.append(refs);
       cards.append(card);
