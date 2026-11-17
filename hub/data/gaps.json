@@ -1,0 +1,11 @@
+{
+  "items": [
+    {"topic": "Stochastic block model", "slides": "Named once (GR s12, « Stochastic block models and other model-based methods »); no explanation, no algorithm, no software.", "needed": "§4.2 (required)", "question": "Is there an SBM session, lab or recommended package? This decides D10 (Python route)."},
+    {"topic": "Directed graphs", "slides": "Modularity and the Laplacian are defined for undirected graphs; GR s35 says the Laplacian has no natural extension to directed graphs.", "needed": "§4.1–4.2: the OD graph is directed and weighted", "question": "For modularity or spectral cross-checks, symmetrise (w_ij + w_ji)? The SBM itself can stay directed."},
+    {"topic": "Degree distributions and centrality", "slides": "Weighted degrees appear in the Laplacian (GR s35); edge betweenness only as a clustering tool (GR s53–55). No PageRank or node centrality slides.", "needed": "§4.1 « stations les plus centrales »", "question": "Which centrality measures to report (decide before computing)."},
+    {"topic": "Hierarchical clustering / Ward", "slides": "Referred to as already seen (CE s26, s69) and used in R examples (GR s60–62), but no deck you shared presents it.", "needed": "Optional cross-check in §3.3", "question": "Was it in a session whose slides you have not shared?"},
+    {"topic": "ICL criterion", "slides": "Only BIC is in the slides (CE s61–62).", "needed": "Usual way to choose the number of SBM blocks", "question": "Acceptable to use ICL, with an outside reference?"},
+    {"topic": "UMAP, autoencoders, one-class SVM", "slides": "Named only (DR s2, s47; AN s71).", "needed": "Nothing required", "question": "None; prefer the explained course methods (Isomap, t-SNE, LOF, isolation forest)."},
+    {"topic": "Sessions not shared", "slides": "The course plan (CE s3) lists six sessions; you shared four decks. « Clustering et analyse de textes » and « Détection de ruptures » were not shared.", "needed": "Probably nothing; change-point detection could support the temporal-stability bonus (§6)", "question": "Do you have those decks?"}
+  ]
+}
