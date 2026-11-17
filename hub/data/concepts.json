@@ -1,123 +1,466 @@
 {
   "decks": {
-    "CE": {"title": "Séance 1 : clustering, k-means, modèles de mélange", "file": "Clustering_EM.pdf", "note": "Printed slide numbers are one less than PDF page numbers from PDF page 11 onwards (PDF pages 10 and 11 are both slide 10). Slide numbers below are the printed ones."},
-    "DR": {"title": "Séance 2 : réduction de dimension", "file": "Dissim_clustering_part_2.pdf", "note": "Slide number = PDF page."},
-    "GR": {"title": "Lecture 2 : community detection and graph clustering", "file": "Lecture_2.pdf", "note": "Slide number = PDF page. In English."},
-    "AN": {"title": "Séance 4 : détection d'anomalies", "file": "Anomalies.pdf", "note": "Slide number = PDF page. In English despite the French title."}
+    "CE": {
+      "title": "Séance 1 : clustering, k-means, modèles de mélange",
+      "file": "Clustering_EM.pdf",
+      "note": "Printed slide numbers are one less than PDF page numbers from PDF page 11 onwards (PDF pages 10 and 11 are both slide 10). Slide numbers below are the printed ones."
+    },
+    "DR": {
+      "title": "Séance 2 : réduction de dimension",
+      "file": "Dissim_clustering_part_2.pdf",
+      "note": "Slide number = PDF page."
+    },
+    "GR": {
+      "title": "Lecture 2 : community detection and graph clustering",
+      "file": "Lecture_2.pdf",
+      "note": "Slide number = PDF page. In English."
+    },
+    "AN": {
+      "title": "Séance 4 : détection d'anomalies",
+      "file": "Anomalies.pdf",
+      "note": "Slide number = PDF page. In English despite the French title."
+    }
   },
   "groups": [
-    {"key": "cluster", "name": "Clustering of station profiles", "brief": "§3.3"},
-    {"key": "reduce", "name": "Dimension reduction", "brief": "§3.2"},
-    {"key": "anomaly", "name": "Anomaly detection", "brief": "§3.4"},
-    {"key": "graph", "name": "Graph and SBM", "brief": "§4.1–4.2"},
-    {"key": "compare", "name": "Comparing clusterings", "brief": "§4.3"}
+    {
+      "key": "cluster",
+      "name": "Clustering of station profiles",
+      "brief": "§3.3"
+    },
+    {
+      "key": "reduce",
+      "name": "Dimension reduction",
+      "brief": "§3.2"
+    },
+    {
+      "key": "anomaly",
+      "name": "Anomaly detection",
+      "brief": "§3.4"
+    },
+    {
+      "key": "graph",
+      "name": "Graph and SBM",
+      "brief": "§4.1–4.2"
+    },
+    {
+      "key": "compare",
+      "name": "Comparing clusterings",
+      "brief": "§4.3"
+    },
+    {
+      "key": "context",
+      "name": "Related studies",
+      "brief": "§1"
+    }
   ],
   "concepts": [
-    {"key": "clustering_basics", "group": "cluster", "name": "What clustering is (and why it is ill-posed)",
-     "plain": "Grouping observations so that similar ones share a group and dissimilar ones do not, with no labels and no known number of groups. There is no universal definition of a cluster and no universal quality criterion, so every result depends on the representation and the method chosen.",
-     "course": [{"deck": "CE", "slides": "5–13", "what": "Data for clustering (s5), definition (s6), uses (s7), clustering as an ill-posed problem (s8), families of methods: hierarchical, partitioning, probabilistic, density-based (s10), batch vs online learning (s11), 2-D toy examples (s12)."}],
-     "project": "Frames the whole of §3.3 and the brief's central question: different representations (global, hourly, weekly, monthly profiles; the graph) can give different, equally defensible groupings."},
-    {"key": "kmeans", "group": "cluster", "name": "k-means and k-means++",
-     "plain": "Choose K centres and assign each observation to its nearest centre; move each centre to the mean of its observations; repeat. This lowers the within-cluster sum of squares and stops at a local minimum, so the start matters. k-means++ picks starting centres far apart, with probability proportional to squared distance.",
-     "course": [{"deck": "CE", "slides": "14–30", "what": "Algorithm (s14), as an optimisation problem (s15–16), batch version (s17–18), online version (s19–21), stopping rules (s22), initialisation and k-means++ (s23), toy examples (s24), strengths and limits: spherical clusters, choice of K (s25), variants (s26), k-medoids (s27), kernel/relational k-means (s28–29), k-means as the hub of clustering (s30)."}],
-     "project": "Main candidate for clustering station profiles (brief §3.3). Needs standardised features; K chosen by a rule written before running."},
-    {"key": "kernel_kmeans", "group": "cluster", "name": "k-medoids and kernel (relational) k-means",
-     "plain": "Versions of k-means for data known only through dissimilarities. k-medoids uses an actual observation as each centre. Kernel k-means writes centres as weighted averages of observations in a feature space and computes distances from the dissimilarity matrix alone (the kernel trick).",
-     "course": [{"deck": "CE", "slides": "26–29", "what": "Generalising k-means to any dissimilarity (s26), k-medoids and its quadratic cost (s27), relational/kernel k-means with the distance formula in terms of Δ (s28–29)."}, {"deck": "GR", "slides": "60", "what": "Similarity-based graph clustering: a dissimilarity between vertices fed to hierarchical clustering or kernel k-means."}],
-     "project": "Optional. Useful if stations are compared through a non-Euclidean dissimilarity (for example between hourly profiles) or through shortest-path distances on the graph."},
-    {"key": "hierarchical_ward", "group": "cluster", "name": "Hierarchical clustering and Ward's criterion",
-     "plain": "Builds a tree (dendrogram) of nested partitions by repeatedly merging the two closest groups. Ward's criterion merges the pair whose union increases the within-group variance least; cutting the tree gives K groups.",
-     "course": [{"deck": "CE", "slides": "10, 26, 69", "what": "Hierarchical methods as a family (s10); Ward's criterion referred to as already introduced (s26); R² as a criterion for Ward (s69)."}, {"deck": "GR", "slides": "25, 60–62", "what": "Greedy modularity as hierarchical merging (s25); hierarchical clustering on shortest-path distances, R output hclust ward.D2 (s60–62)."}],
-     "project": "Cross-check for k-means on the same features, and a dendrogram helps choose K.",
-     "gap": "The decks you shared refer to Ward as already covered (CE s26) but contain no slides presenting hierarchical clustering itself. Possibly in a session not shared; not verified."},
-    {"key": "gmm_em", "group": "cluster", "name": "Gaussian mixture models and the EM algorithm",
-     "plain": "Assume each cluster is a Gaussian distribution and the data a weighted mix of them. EM alternates an E-step (each observation's probability of belonging to each cluster) and an M-step (re-estimate weights, means and covariances from those probabilities). The likelihood never decreases, but EM can stop at a local optimum. k-means is a special case with hard assignments and equal spherical covariances.",
-     "course": [{"deck": "CE", "slides": "31–67", "what": "Two-class example (s32–34), from mixture to clustering via Bayes (s35), maximum likelihood (s36–37), EM introduction (s38–40), M-step in detail (s41–42), EM for two Gaussians (s43–45), general mixtures and EM (s47–53), monotone likelihood proof (s55–59), slow convergence and initialisation (s60), GMM updates (s64–65), k-means vs GMM (s66–67)."}],
-     "project": "Second clustering method for station profiles: soft memberships, ellipsoidal clusters, and K chosen by BIC."},
-    {"key": "model_selection_bic_icl", "group": "cluster", "name": "Choosing the number of clusters: BIC and ICL",
-     "plain": "BIC = −2·log-likelihood + (number of parameters)·log n; lower is better, and the penalty stops K from growing without limit. ICL adds a penalty for uncertain cluster memberships, so it favours well-separated clusters; it is the usual criterion for choosing the number of blocks in an SBM.",
-     "course": [{"deck": "CE", "slides": "61–62", "what": "BIC formula with the parameter count for a 2-D Gaussian mixture (6K − 1), consistency of BIC, the cost of parametric assumptions when p is large."}, {"deck": "AN", "slides": "45", "what": "Mixture models for anomaly detection, model selection with BIC."}],
-     "project": "Rule for K in the GMM (BIC) and, if our SBM follows the usual likelihood approach, for the number of SBM blocks (ICL).",
-     "gap": "ICL is not in the decks you shared."},
-    {"key": "cluster_quality", "group": "cluster", "name": "Cluster quality: explained variance, Calinski–Harabasz, silhouette",
-     "plain": "R² is the share of total variance between clusters; it always rises with K. Calinski–Harabasz = (between SS/(K−1)) / (within SS/(n−K)), a Fisher-type ratio. Silhouette s(i) = (b − a)/max(a, b), where a is the mean distance to one's own cluster and b to the nearest other cluster; values near 1 mean well placed, negative means probably misassigned.",
-     "course": [{"deck": "CE", "slides": "69–76", "what": "Many criteria exist (clusterCrit vignette); R² for Ward and why it must be penalised (s69); explained-variance example (s70–71); Calinski–Harabasz (s72–73); silhouette per observation, per cluster and overall (s74), examples (s75–76)."}],
-     "project": "Rule for K in k-means (to be fixed before running), and the silhouette flags stations 'mal représentées par les clusters' for §3.4."},
-    {"key": "pca", "group": "reduce", "name": "Principal component analysis (PCA, ACP)",
-     "plain": "Rotates standardised data onto orthogonal axes ordered by the variance they carry. The first two or three components give the best linear 2-D or 3-D picture; correlations between components and the original variables tell you what each axis means.",
-     "course": [{"deck": "DR", "slides": "2–9", "what": "Families of reduction methods (s2), PCA principle, eigen-decomposition of covariance or correlation, variance preserved (s3–4), interpretation through explained variance, correlation circle and projection quality (s5), Iris example (s6–8), limits: linear only, favours large distances (s9)."}],
-     "project": "Required by §3.2 (« On utilisera au moins l'ACP »). Answers « Les premières composantes de l'ACP sont-elles interprétables ? »."},
-    {"key": "mds", "group": "reduce", "name": "Multidimensional scaling (MDS)",
-     "plain": "Finds low-dimensional coordinates whose distances match a given dissimilarity matrix. Classical MDS double-centres the squared dissimilarities and takes an eigen-decomposition; on Euclidean distances between centred vectors it gives exactly PCA.",
-     "course": [{"deck": "DR", "slides": "10–22", "what": "Relational data examples, including shortest-path distances for graphs (s10), what MDS is (s11–13), how it works (s14), similarity S from Δ by double centring (s15–16), MDS ≡ PCA proof (s17–19, s22), Iris PCA vs MDS (s20–21)."}],
-     "project": "Optional. Would let us project stations from a non-Euclidean dissimilarity, or from graph distances."},
-    {"key": "kernel_pca", "group": "reduce", "name": "Kernel PCA",
-     "plain": "PCA carried out in a feature space defined implicitly by a kernel (for example Gaussian), using only the centred kernel matrix. Gives non-linear projections and still reports variance explained.",
-     "course": [{"deck": "DR", "slides": "23–29", "what": "Kernel framework: symmetric, positive semi-definite (s24), kernel examples (s25), centring the Gram matrix and the eigen-decomposition (s26–27), Iris example (s28–29); noted as rarely used for dimension reduction (s27)."}],
-     "project": "Possible non-linear method for §3.2."},
-    {"key": "isomap", "group": "reduce", "name": "Isomap",
-     "plain": "Replaces straight-line distances with distances along the data's shape: build a k-nearest-neighbour (or ε) graph, compute shortest-path distances on it, then run MDS on those. Needs k (or ε) tuned and the graph connected.",
-     "course": [{"deck": "DR", "slides": "30–45", "what": "Why PCA/MDS favour large distances (s30–32), main idea: geodesic distances (s33–35), proximity graph (s36–38), Isomap = MDS on shortest-path distances, tuning k or ε, connectivity (s39–41), Swiss-roll and Iris examples (s42–45)."}],
-     "project": "Candidate non-linear method for §3.2 (the brief requires one). Unlike t-SNE, its coordinates keep a global meaning."},
-    {"key": "tsne", "group": "reduce", "name": "t-SNE",
-     "plain": "Turns distances into neighbour probabilities (Gaussian in the input, Student-t in the 2-D output) and moves points to minimise the KL divergence between the two. Keeps local neighbourhoods, distorts global distances and cluster sizes. Perplexity (about the number of neighbours) changes the picture a lot.",
-     "course": [{"deck": "DR", "slides": "46–63", "what": "Introduction (s46–47), input probabilities p_ij (s48–49), output q_ij with Student-t (s50), why it preserves local structure and why Student-t (s51), gradient as attractive/repulsive forces (s52), Barnes–Hut approximation (s53–56), Swiss-roll and Iris examples with several perplexities (s57–62), general remarks: perplexity 5–50, PCA is easier to read, « il est déconseillé d'utiliser les coordonnées résultantes de t-SNE pour des objectifs de clustering ! », link to distill.pub/2016/misread-tsne (s63)."}],
-     "project": "Candidate non-linear visualisation for §3.2. Per s63: visualise only, never cluster on t-SNE coordinates."},
-    {"key": "umap", "group": "reduce", "name": "UMAP",
-     "plain": "A neighbour-graph method like t-SNE, usually faster and often keeping more global structure; parameters are the number of neighbours and a minimum distance.",
-     "course": [{"deck": "DR", "slides": "2, 47", "what": "Only named: in the list of manifold methods (s2) and as a newer alternative to t-SNE (s47)."}],
-     "project": "Optional. Not taught in the slides you shared, so t-SNE or Isomap is the safer course method.",
-     "gap": "Named only; not explained in the course slides."},
-    {"key": "anomaly_basics", "group": "anomaly", "name": "What counts as an anomaly",
-     "plain": "An observation far from a defined 'normal' behaviour; normality always implies a model. Anomalies can be point, contextual (abnormal only in a context such as time) or collective. Unsupervised methods give a score; the course prefers scores over yes/no decisions.",
-     "course": [{"deck": "AN", "slides": "2–14, 79–81", "what": "Definition and applications (s2–4), why it is hard (s5), point, contextual and collective anomalies (s6–11), supervised, semi-supervised and unsupervised frameworks (s12–14), conclusion: define normal behaviour first, prefer scores (s80), references (s81)."}],
-     "project": "§3.4 requires interpretation of each anomaly: error, special station, tourist station, edge of network, or rare but plausible."},
-    {"key": "mahalanobis_robust", "group": "anomaly", "name": "Mahalanobis distance and robust covariance (MVE, MCD)",
-     "plain": "Mahalanobis distance measures how far a point is from the mean in units that account for correlations. Under a Gaussian model its square follows a known distribution, which gives thresholds. Anomalies inflate the estimated mean and covariance, so robust estimates (minimum volume ellipsoid, minimum covariance determinant) are computed from the most central part of the data.",
-     "course": [{"deck": "AN", "slides": "15–44", "what": "Gaussian model and Mahalanobis distance (s18–27, with the F-distribution result when μ and Σ are estimated, s24), rare vs impossible values (s28), robust statistics: breakdown point, maximal bias (s29–30), robust estimates: multivariate median, MVE, MCD (s31), examples (s32–37), curse of dimensionality (s38–44)."}],
-     "project": "Candidate anomaly method for station profiles (on a few PCA components, given the curse-of-dimensionality slides)."},
-    {"key": "knn_lof", "group": "anomaly", "name": "k-NN distances and the Local Outlier Factor (LOF)",
-     "plain": "Density-based scores: a point is suspicious if few points lie near it. LOF compares a point's local density with its neighbours' densities: about 1 is normal, well above 1 means it sits in a sparser region than its neighbours.",
-     "course": [{"deck": "AN", "slides": "55–69", "what": "Local-density idea (s55–56), ε-count rule (s57), k-NN distance and rank scores (s58), LOF definition and interpretation (s59–60), strengths and weaknesses (s61), examples with k = 3 and k = 5 (s62–63), variants COF, INFLO and others (s64), examples (s65–68), conclusion: heuristics, not theory-based (s69)."}],
-     "project": "Answers the brief's « stations très différentes de leur voisinage dans l'espace réduit »."},
-    {"key": "dbscan", "group": "anomaly", "name": "DBSCAN and clustering-based anomaly detection",
-     "plain": "DBSCAN groups points in dense regions and labels points in sparse regions as noise. More generally, after clustering, observations far from every centroid, or in tiny clusters, are anomaly candidates; robust variants such as k-medians resist them.",
-     "course": [{"deck": "AN", "slides": "49–54", "what": "Links between clustering and anomaly detection: DBSCAN noise, distance to centroids, small clusters (s50), basic vs robust approaches (s51), robust clustering with k-medians (Gmedian::kGmedian in R) (s52–54)."}],
-     "project": "Directly answers « des stations mal représentées par les clusters » (§3.4)."},
-    {"key": "one_class", "group": "anomaly", "name": "One-class SVM",
-     "plain": "Learns a boundary that encloses most of the data in a kernel feature space; points outside it are anomalies.",
-     "course": [{"deck": "AN", "slides": "70–71", "what": "Named as one of two 'ad-hoc' classics (Tax & Duin, 1999); no further slides."}],
-     "project": "Not needed. Isolation forest is the better-covered ad-hoc method.",
-     "gap": "Named only; not explained in the course slides."},
-    {"key": "isolation_forest", "group": "anomaly", "name": "Isolation forest",
-     "plain": "Builds many random trees that split on a random feature at a random threshold. Anomalies are isolated in few splits, so short average path length means a high score; a(x) is near 1 for anomalies and near 0.5 for ordinary points, and the course gives 0.6 as a rule of thumb.",
-     "course": [{"deck": "AN", "slides": "72–78", "what": "Key idea (s72), building the trees and the score formula (s73), interpreting the score, rule of thumb 0.6 (s74), strengths: non-parametric, scales, bounded score (s75), examples (s76–78)."}],
-     "project": "Candidate anomaly method for station profiles; its score is easy to report and map."},
-    {"key": "graph_basics", "group": "graph", "name": "Directed weighted graphs, degrees and centrality",
-     "plain": "Stations are nodes; an arc i → j carries w_ij, the number of 2025 trips from i to j. Out-degree counts the distinct destinations of i; out-strength is the total trips leaving i (in- likewise). Centrality measures (betweenness, PageRank and others) rank how important a node is in the flow structure.",
-     "course": [{"deck": "GR", "slides": "35, 53–55", "what": "Weighted degrees (strengths) in the Laplacian (s35); edge betweenness used for divisive clustering (Girvan–Newman, s53–55)."}],
-     "project": "§4.1: nodes, arcs, in/out-degree and weight distributions, most central stations, in/out imbalance.",
-     "gap": "No slides on directed graphs, degree distributions, PageRank or other centrality measures in the decks you shared."},
-    {"key": "graph_clustering_basics", "group": "graph", "name": "What a cluster in a graph is",
-     "plain": "Usually a community: vertices more connected to each other than to the rest. But real networks may instead have a core-periphery or an ordered structure, which community methods miss and block models can capture.",
-     "course": [{"deck": "GR", "slides": "2–12", "what": "Graph clustering (s3–5), what a cluster is: no universal definition, communities (s6–9), community vs core-periphery vs ordered structures (s10–11), classes of methods, including « Stochastic block models and other model-based methods » (s12)."}],
-     "project": "Key to §4.2–4.3: a bike network may look more like hubs and periphery than like separate communities, which is why the brief asks for an SBM."},
-    {"key": "modularity_louvain", "group": "graph", "name": "Modularity, greedy optimisation, Louvain and Leiden",
-     "plain": "Modularity compares the share of edges inside groups with what a random graph with the same degrees would give. High modularity means assortative communities. Maximising it exactly is intractable; Louvain moves nodes greedily then merges communities, and Leiden refines Louvain.",
-     "course": [{"deck": "GR", "slides": "13–32", "what": "Homophily (s14), definition for undirected unweighted graphs (s15–17), example (s18), properties (s19), using it for clustering and choosing K (s20–21), simulated and Les Misérables examples (s22–24), greedy agglomeration (s25–26), Louvain (s27–29), Leiden and simulated annealing (s30–32)."}],
-     "project": "Optional cross-check on a symmetrised version of the OD graph. The slides define modularity for undirected graphs only."},
-    {"key": "spectral_clustering", "group": "graph", "name": "Spectral clustering",
-     "plain": "Takes the eigenvectors of the graph Laplacian L = D − A (or its normalised version) for the K smallest eigenvalues and runs k-means on them. Works because K weakly linked communities look like K connected components slightly perturbed. K can be chosen by the eigen-gap.",
-     "course": [{"deck": "GR", "slides": "33–52", "what": "Heuristic (s34), Laplacian including weighted graphs, and no natural extension to directed graphs (s35), properties (s36–37), normalised Laplacian (s38), examples (s39–41), why it works (s42), algorithm (s43), Ng–Jordan–Weiss version (s44), eigen-gap for K (s45), O(n³) cost (s46), examples (s47–52)."}],
-     "project": "Optional cross-check on the symmetrised graph (undirected only, per s35)."},
-    {"key": "sbm", "group": "graph", "name": "Stochastic block model (SBM)",
-     "plain": "A generative model: each node belongs to a hidden block, and the number of trips from i to j depends only on the two blocks (for counts, typically a Poisson law with a block-to-block mean). Fitting it recovers blocks of stations that play the same role, for example strong emitters or receivers, not only dense communities. Usually fitted by variational EM, with the number of blocks chosen by ICL.",
-     "course": [{"deck": "GR", "slides": "12", "what": "Listed as a class of methods: « Stochastic block models and other model-based methods ». No further slides."}],
-     "project": "Required (§4.2). The Python implementation route is still open (decision D10).",
-     "gap": "Not explained in the course slides you shared. Ask whether there is an SBM session or lab."},
-    {"key": "partition_comparison", "group": "compare", "name": "Comparing two clusterings: Rand, adjusted Rand, NMI",
-     "plain": "Rand index: share of pairs of stations on which two partitions agree (together in both, or apart in both). Adjusted Rand corrects for chance agreement, so about 0 means chance and 1 identical. NMI measures the information two partitions share, from 0 to 1.",
-     "course": [{"deck": "GR", "slides": "63–66", "what": "Comparing clusterings and building a hierarchy of partitions (s64), notation and Rand index, adjusted Rand (Hubert & Arabie, 1985) (s65), NMI (Danon, 2005), plus the exercise: compute ARI and NMI between methods (s66)."}],
-     "project": "Core of §4.3: ARI and NMI between the vector clustering and the SBM, with the contingency table and a map."}
+    {
+      "key": "clustering_basics",
+      "group": "cluster",
+      "name": "What clustering is (and why it is ill-posed)",
+      "plain": "Grouping observations so that similar ones share a group and dissimilar ones do not, with no labels and no known number of groups. There is no universal definition of a cluster and no universal quality criterion, so every result depends on the representation and the method chosen.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "5–13",
+          "what": "Data for clustering (s5), definition (s6), uses (s7), clustering as an ill-posed problem (s8), families of methods: hierarchical, partitioning, probabilistic, density-based (s10), batch vs online learning (s11), 2-D toy examples (s12)."
+        }
+      ],
+      "project": "Frames the whole of §3.3 and the brief's central question: different representations (global, hourly, weekly, monthly profiles; the graph) can give different, equally defensible groupings."
+    },
+    {
+      "key": "kmeans",
+      "group": "cluster",
+      "name": "k-means and k-means++",
+      "plain": "Choose K centres and assign each observation to its nearest centre; move each centre to the mean of its observations; repeat. This lowers the within-cluster sum of squares and stops at a local minimum, so the start matters. k-means++ picks starting centres far apart, with probability proportional to squared distance.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "14–30",
+          "what": "Algorithm (s14), as an optimisation problem (s15–16), batch version (s17–18), online version (s19–21), stopping rules (s22), initialisation and k-means++ (s23), toy examples (s24), strengths and limits: spherical clusters, choice of K (s25), variants (s26), k-medoids (s27), kernel/relational k-means (s28–29), k-means as the hub of clustering (s30)."
+        }
+      ],
+      "project": "Main candidate for clustering station profiles (brief §3.3). Needs standardised features; K chosen by a rule written before running."
+    },
+    {
+      "key": "kernel_kmeans",
+      "group": "cluster",
+      "name": "k-medoids and kernel (relational) k-means",
+      "plain": "Versions of k-means for data known only through dissimilarities. k-medoids uses an actual observation as each centre. Kernel k-means writes centres as weighted averages of observations in a feature space and computes distances from the dissimilarity matrix alone (the kernel trick).",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "26–29",
+          "what": "Generalising k-means to any dissimilarity (s26), k-medoids and its quadratic cost (s27), relational/kernel k-means with the distance formula in terms of Δ (s28–29)."
+        },
+        {
+          "deck": "GR",
+          "slides": "60",
+          "what": "Similarity-based graph clustering: a dissimilarity between vertices fed to hierarchical clustering or kernel k-means."
+        }
+      ],
+      "project": "Optional. Useful if stations are compared through a non-Euclidean dissimilarity (for example between hourly profiles) or through shortest-path distances on the graph."
+    },
+    {
+      "key": "hierarchical_ward",
+      "group": "cluster",
+      "name": "Hierarchical clustering and Ward's criterion",
+      "plain": "Builds a tree (dendrogram) of nested partitions by repeatedly merging the two closest groups. Ward's criterion merges the pair whose union increases the within-group variance least; cutting the tree gives K groups.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "10, 26, 69",
+          "what": "Hierarchical methods as a family (s10); Ward's criterion referred to as already introduced (s26); R² as a criterion for Ward (s69)."
+        },
+        {
+          "deck": "GR",
+          "slides": "25, 60–62",
+          "what": "Greedy modularity as hierarchical merging (s25); hierarchical clustering on shortest-path distances, R output hclust ward.D2 (s60–62)."
+        }
+      ],
+      "project": "Cross-check for k-means on the same features, and a dendrogram helps choose K.",
+      "gap": "The decks you shared refer to Ward as already covered (CE s26) but contain no slides presenting hierarchical clustering itself. Possibly in a session not shared; not verified."
+    },
+    {
+      "key": "gmm_em",
+      "group": "cluster",
+      "name": "Gaussian mixture models and the EM algorithm",
+      "plain": "Assume each cluster is a Gaussian distribution and the data a weighted mix of them. EM alternates an E-step (each observation's probability of belonging to each cluster) and an M-step (re-estimate weights, means and covariances from those probabilities). The likelihood never decreases, but EM can stop at a local optimum. k-means is a special case with hard assignments and equal spherical covariances.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "31–67",
+          "what": "Two-class example (s32–34), from mixture to clustering via Bayes (s35), maximum likelihood (s36–37), EM introduction (s38–40), M-step in detail (s41–42), EM for two Gaussians (s43–45), general mixtures and EM (s47–53), monotone likelihood proof (s55–59), slow convergence and initialisation (s60), GMM updates (s64–65), k-means vs GMM (s66–67)."
+        }
+      ],
+      "project": "Second clustering method for station profiles: soft memberships, ellipsoidal clusters, and K chosen by BIC."
+    },
+    {
+      "key": "model_selection_bic_icl",
+      "group": "cluster",
+      "name": "Choosing the number of clusters: BIC and ICL",
+      "plain": "BIC = −2·log-likelihood + (number of parameters)·log n; lower is better, and the penalty stops K from growing without limit. ICL adds a penalty for uncertain cluster memberships, so it favours well-separated clusters; it is the usual criterion for choosing the number of blocks in an SBM.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "61–62",
+          "what": "BIC formula with the parameter count for a 2-D Gaussian mixture (6K − 1), consistency of BIC, the cost of parametric assumptions when p is large."
+        },
+        {
+          "deck": "AN",
+          "slides": "45",
+          "what": "Mixture models for anomaly detection, model selection with BIC."
+        }
+      ],
+      "project": "Rule for K in the GMM (BIC) and, if our SBM follows the usual likelihood approach, for the number of SBM blocks (ICL).",
+      "gap": "ICL is not in the decks you shared."
+    },
+    {
+      "key": "cluster_quality",
+      "group": "cluster",
+      "name": "Cluster quality: explained variance, Calinski–Harabasz, silhouette",
+      "plain": "R² is the share of total variance between clusters; it always rises with K. Calinski–Harabasz = (between SS/(K−1)) / (within SS/(n−K)), a Fisher-type ratio. Silhouette s(i) = (b − a)/max(a, b), where a is the mean distance to one's own cluster and b to the nearest other cluster; values near 1 mean well placed, negative means probably misassigned.",
+      "course": [
+        {
+          "deck": "CE",
+          "slides": "69–76",
+          "what": "Many criteria exist (clusterCrit vignette); R² for Ward and why it must be penalised (s69); explained-variance example (s70–71); Calinski–Harabasz (s72–73); silhouette per observation, per cluster and overall (s74), examples (s75–76)."
+        }
+      ],
+      "project": "Rule for K in k-means (to be fixed before running), and the silhouette flags stations 'mal représentées par les clusters' for §3.4."
+    },
+    {
+      "key": "pca",
+      "group": "reduce",
+      "name": "Principal component analysis (PCA, ACP)",
+      "plain": "Rotates standardised data onto orthogonal axes ordered by the variance they carry. The first two or three components give the best linear 2-D or 3-D picture; correlations between components and the original variables tell you what each axis means.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "2–9",
+          "what": "Families of reduction methods (s2), PCA principle, eigen-decomposition of covariance or correlation, variance preserved (s3–4), interpretation through explained variance, correlation circle and projection quality (s5), Iris example (s6–8), limits: linear only, favours large distances (s9)."
+        }
+      ],
+      "project": "Required by §3.2 (« On utilisera au moins l'ACP »). Answers « Les premières composantes de l'ACP sont-elles interprétables ? »."
+    },
+    {
+      "key": "mds",
+      "group": "reduce",
+      "name": "Multidimensional scaling (MDS)",
+      "plain": "Finds low-dimensional coordinates whose distances match a given dissimilarity matrix. Classical MDS double-centres the squared dissimilarities and takes an eigen-decomposition; on Euclidean distances between centred vectors it gives exactly PCA.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "10–22",
+          "what": "Relational data examples, including shortest-path distances for graphs (s10), what MDS is (s11–13), how it works (s14), similarity S from Δ by double centring (s15–16), MDS ≡ PCA proof (s17–19, s22), Iris PCA vs MDS (s20–21)."
+        }
+      ],
+      "project": "Optional. Would let us project stations from a non-Euclidean dissimilarity, or from graph distances."
+    },
+    {
+      "key": "kernel_pca",
+      "group": "reduce",
+      "name": "Kernel PCA",
+      "plain": "PCA carried out in a feature space defined implicitly by a kernel (for example Gaussian), using only the centred kernel matrix. Gives non-linear projections and still reports variance explained.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "23–29",
+          "what": "Kernel framework: symmetric, positive semi-definite (s24), kernel examples (s25), centring the Gram matrix and the eigen-decomposition (s26–27), Iris example (s28–29); noted as rarely used for dimension reduction (s27)."
+        }
+      ],
+      "project": "Possible non-linear method for §3.2."
+    },
+    {
+      "key": "isomap",
+      "group": "reduce",
+      "name": "Isomap",
+      "plain": "Replaces straight-line distances with distances along the data's shape: build a k-nearest-neighbour (or ε) graph, compute shortest-path distances on it, then run MDS on those. Needs k (or ε) tuned and the graph connected.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "30–45",
+          "what": "Why PCA/MDS favour large distances (s30–32), main idea: geodesic distances (s33–35), proximity graph (s36–38), Isomap = MDS on shortest-path distances, tuning k or ε, connectivity (s39–41), Swiss-roll and Iris examples (s42–45)."
+        }
+      ],
+      "project": "Candidate non-linear method for §3.2 (the brief requires one). Unlike t-SNE, its coordinates keep a global meaning."
+    },
+    {
+      "key": "tsne",
+      "group": "reduce",
+      "name": "t-SNE",
+      "plain": "Turns distances into neighbour probabilities (Gaussian in the input, Student-t in the 2-D output) and moves points to minimise the KL divergence between the two. Keeps local neighbourhoods, distorts global distances and cluster sizes. Perplexity (about the number of neighbours) changes the picture a lot.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "46–63",
+          "what": "Introduction (s46–47), input probabilities p_ij (s48–49), output q_ij with Student-t (s50), why it preserves local structure and why Student-t (s51), gradient as attractive/repulsive forces (s52), Barnes–Hut approximation (s53–56), Swiss-roll and Iris examples with several perplexities (s57–62), general remarks: perplexity 5–50, PCA is easier to read, « il est déconseillé d'utiliser les coordonnées résultantes de t-SNE pour des objectifs de clustering ! », link to distill.pub/2016/misread-tsne (s63)."
+        }
+      ],
+      "project": "Candidate non-linear visualisation for §3.2. Per s63: visualise only, never cluster on t-SNE coordinates."
+    },
+    {
+      "key": "umap",
+      "group": "reduce",
+      "name": "UMAP",
+      "plain": "A neighbour-graph method like t-SNE, usually faster and often keeping more global structure; parameters are the number of neighbours and a minimum distance.",
+      "course": [
+        {
+          "deck": "DR",
+          "slides": "2, 47",
+          "what": "Only named: in the list of manifold methods (s2) and as a newer alternative to t-SNE (s47)."
+        }
+      ],
+      "project": "Optional. Not taught in the slides you shared, so t-SNE or Isomap is the safer course method.",
+      "gap": "Named only; not explained in the course slides."
+    },
+    {
+      "key": "anomaly_basics",
+      "group": "anomaly",
+      "name": "What counts as an anomaly",
+      "plain": "An observation far from a defined 'normal' behaviour; normality always implies a model. Anomalies can be point, contextual (abnormal only in a context such as time) or collective. Unsupervised methods give a score; the course prefers scores over yes/no decisions.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "2–14, 79–81",
+          "what": "Definition and applications (s2–4), why it is hard (s5), point, contextual and collective anomalies (s6–11), supervised, semi-supervised and unsupervised frameworks (s12–14), conclusion: define normal behaviour first, prefer scores (s80), references (s81)."
+        }
+      ],
+      "project": "§3.4 requires interpretation of each anomaly: error, special station, tourist station, edge of network, or rare but plausible."
+    },
+    {
+      "key": "mahalanobis_robust",
+      "group": "anomaly",
+      "name": "Mahalanobis distance and robust covariance (MVE, MCD)",
+      "plain": "Mahalanobis distance measures how far a point is from the mean in units that account for correlations. Under a Gaussian model its square follows a known distribution, which gives thresholds. Anomalies inflate the estimated mean and covariance, so robust estimates (minimum volume ellipsoid, minimum covariance determinant) are computed from the most central part of the data.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "15–44",
+          "what": "Gaussian model and Mahalanobis distance (s18–27, with the F-distribution result when μ and Σ are estimated, s24), rare vs impossible values (s28), robust statistics: breakdown point, maximal bias (s29–30), robust estimates: multivariate median, MVE, MCD (s31), examples (s32–37), curse of dimensionality (s38–44)."
+        }
+      ],
+      "project": "Candidate anomaly method for station profiles (on a few PCA components, given the curse-of-dimensionality slides)."
+    },
+    {
+      "key": "knn_lof",
+      "group": "anomaly",
+      "name": "k-NN distances and the Local Outlier Factor (LOF)",
+      "plain": "Density-based scores: a point is suspicious if few points lie near it. LOF compares a point's local density with its neighbours' densities: about 1 is normal, well above 1 means it sits in a sparser region than its neighbours.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "55–69",
+          "what": "Local-density idea (s55–56), ε-count rule (s57), k-NN distance and rank scores (s58), LOF definition and interpretation (s59–60), strengths and weaknesses (s61), examples with k = 3 and k = 5 (s62–63), variants COF, INFLO and others (s64), examples (s65–68), conclusion: heuristics, not theory-based (s69)."
+        }
+      ],
+      "project": "Answers the brief's « stations très différentes de leur voisinage dans l'espace réduit »."
+    },
+    {
+      "key": "dbscan",
+      "group": "anomaly",
+      "name": "DBSCAN and clustering-based anomaly detection",
+      "plain": "DBSCAN groups points in dense regions and labels points in sparse regions as noise. More generally, after clustering, observations far from every centroid, or in tiny clusters, are anomaly candidates; robust variants such as k-medians resist them.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "49–54",
+          "what": "Links between clustering and anomaly detection: DBSCAN noise, distance to centroids, small clusters (s50), basic vs robust approaches (s51), robust clustering with k-medians (Gmedian::kGmedian in R) (s52–54)."
+        }
+      ],
+      "project": "Directly answers « des stations mal représentées par les clusters » (§3.4)."
+    },
+    {
+      "key": "one_class",
+      "group": "anomaly",
+      "name": "One-class SVM",
+      "plain": "Learns a boundary that encloses most of the data in a kernel feature space; points outside it are anomalies.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "70–71",
+          "what": "Named as one of two 'ad-hoc' classics (Tax & Duin, 1999); no further slides."
+        }
+      ],
+      "project": "Not needed. Isolation forest is the better-covered ad-hoc method.",
+      "gap": "Named only; not explained in the course slides."
+    },
+    {
+      "key": "isolation_forest",
+      "group": "anomaly",
+      "name": "Isolation forest",
+      "plain": "Builds many random trees that split on a random feature at a random threshold. Anomalies are isolated in few splits, so short average path length means a high score; a(x) is near 1 for anomalies and near 0.5 for ordinary points, and the course gives 0.6 as a rule of thumb.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "72–78",
+          "what": "Key idea (s72), building the trees and the score formula (s73), interpreting the score, rule of thumb 0.6 (s74), strengths: non-parametric, scales, bounded score (s75), examples (s76–78)."
+        }
+      ],
+      "project": "Candidate anomaly method for station profiles; its score is easy to report and map."
+    },
+    {
+      "key": "graph_basics",
+      "group": "graph",
+      "name": "Directed weighted graphs, degrees and centrality",
+      "plain": "Stations are nodes; an arc i → j carries w_ij, the number of 2025 trips from i to j. Out-degree counts the distinct destinations of i; out-strength is the total trips leaving i (in- likewise). Centrality measures (betweenness, PageRank and others) rank how important a node is in the flow structure.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "35, 53–55",
+          "what": "Weighted degrees (strengths) in the Laplacian (s35); edge betweenness used for divisive clustering (Girvan–Newman, s53–55)."
+        }
+      ],
+      "project": "§4.1: nodes, arcs, in/out-degree and weight distributions, most central stations, in/out imbalance.",
+      "gap": "No slides on directed graphs, degree distributions, PageRank or other centrality measures in the decks you shared."
+    },
+    {
+      "key": "graph_clustering_basics",
+      "group": "graph",
+      "name": "What a cluster in a graph is",
+      "plain": "Usually a community: vertices more connected to each other than to the rest. But real networks may instead have a core-periphery or an ordered structure, which community methods miss and block models can capture.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "2–12",
+          "what": "Graph clustering (s3–5), what a cluster is: no universal definition, communities (s6–9), community vs core-periphery vs ordered structures (s10–11), classes of methods, including « Stochastic block models and other model-based methods » (s12)."
+        }
+      ],
+      "project": "Key to §4.2–4.3: a bike network may look more like hubs and periphery than like separate communities, which is why the brief asks for an SBM."
+    },
+    {
+      "key": "modularity_louvain",
+      "group": "graph",
+      "name": "Modularity, greedy optimisation, Louvain and Leiden",
+      "plain": "Modularity compares the share of edges inside groups with what a random graph with the same degrees would give. High modularity means assortative communities. Maximising it exactly is intractable; Louvain moves nodes greedily then merges communities, and Leiden refines Louvain.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "13–32",
+          "what": "Homophily (s14), definition for undirected unweighted graphs (s15–17), example (s18), properties (s19), using it for clustering and choosing K (s20–21), simulated and Les Misérables examples (s22–24), greedy agglomeration (s25–26), Louvain (s27–29), Leiden and simulated annealing (s30–32)."
+        }
+      ],
+      "project": "Optional cross-check on a symmetrised version of the OD graph. The slides define modularity for undirected graphs only."
+    },
+    {
+      "key": "spectral_clustering",
+      "group": "graph",
+      "name": "Spectral clustering",
+      "plain": "Takes the eigenvectors of the graph Laplacian L = D − A (or its normalised version) for the K smallest eigenvalues and runs k-means on them. Works because K weakly linked communities look like K connected components slightly perturbed. K can be chosen by the eigen-gap.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "33–52",
+          "what": "Heuristic (s34), Laplacian including weighted graphs, and no natural extension to directed graphs (s35), properties (s36–37), normalised Laplacian (s38), examples (s39–41), why it works (s42), algorithm (s43), Ng–Jordan–Weiss version (s44), eigen-gap for K (s45), O(n³) cost (s46), examples (s47–52)."
+        }
+      ],
+      "project": "Optional cross-check on the symmetrised graph (undirected only, per s35)."
+    },
+    {
+      "key": "sbm",
+      "group": "graph",
+      "name": "Stochastic block model (SBM)",
+      "plain": "A generative model: each node belongs to a hidden block, and the number of trips from i to j depends only on the two blocks (for counts, typically a Poisson law with a block-to-block mean). Fitting it recovers blocks of stations that play the same role, for example strong emitters or receivers, not only dense communities. Usually fitted by variational EM, with the number of blocks chosen by ICL.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "12",
+          "what": "Listed as a class of methods: « Stochastic block models and other model-based methods ». No further slides."
+        }
+      ],
+      "project": "Required (§4.2). The Python implementation route is still open (decision D10).",
+      "gap": "Not explained in the course slides you shared. Ask whether there is an SBM session or lab."
+    },
+    {
+      "key": "partition_comparison",
+      "group": "compare",
+      "name": "Comparing two clusterings: Rand, adjusted Rand, NMI",
+      "plain": "Rand index: share of pairs of stations on which two partitions agree (together in both, or apart in both). Adjusted Rand corrects for chance agreement, so about 0 means chance and 1 identical. NMI measures the information two partitions share, from 0 to 1.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "63–66",
+          "what": "Comparing clusterings and building a hierarchy of partitions (s64), notation and Rand index, adjusted Rand (Hubert & Arabie, 1985) (s65), NMI (Danon, 2005), plus the exercise: compute ARI and NMI between methods (s66)."
+        }
+      ],
+      "project": "Core of §4.3: ARI and NMI between the vector clustering and the SBM, with the contingency table and a map."
+    },
+    {
+      "key": "community_detection_survey",
+      "group": "graph",
+      "name": "Surveys of graph clustering and community detection",
+      "plain": "Reviews that place modularity, spectral methods, block models and others side by side, with their assumptions and limits.",
+      "course": [
+        {
+          "deck": "GR",
+          "slides": "3, 8, 10–12",
+          "what": "Images taken from Abbe's survey on community detection and SBMs (s3, s8) and from Clauset's network course (s10–11); the classes of methods (s12)."
+        }
+      ],
+      "project": "Background for choosing and justifying the SBM against community methods in §4.2–4.3."
+    },
+    {
+      "key": "anomaly_survey",
+      "group": "anomaly",
+      "name": "Surveys of anomaly detection",
+      "plain": "Reviews that classify anomaly types and detection methods, and compare methods on benchmark data.",
+      "course": [
+        {
+          "deck": "AN",
+          "slides": "81",
+          "what": "The course's reference list: Goldstein & Uchida (2016, PLOS ONE) and Chandola, Banerjee & Kumar's survey, among others."
+        }
+      ],
+      "project": "Background for choosing and interpreting the anomaly method in §3.4."
+    },
+    {
+      "key": "bikeshare_applications",
+      "group": "context",
+      "name": "Clustering studies of bike-sharing systems",
+      "plain": "Earlier work that clusters bike-share stations by their usage over time, or clusters origin–destination flows, mostly on Paris Vélib' and Lyon Vélo'v. Useful to compare our methods and findings with.",
+      "course": [],
+      "project": "Context for the report's data description and discussion; shows how others modelled counts (e.g. Poisson mixtures of OD flows).",
+      "gap": "Not in the course slides."
+    }
   ]
 }

@@ -6,24 +6,46 @@
     "where": "Section 9.1 'K-means Clustering', pp. 424–430 (9.1.1 image segmentation/compression p. 428; Section 9.2 begins on p. 430)",
     "note": "Distortion objective J, Lloyd-style alternating E/M steps, convergence, K-medoids, online version.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'K-means' (with 'Mini Batch K-Means' and 'Bisecting K-Means' subsections nearby)",
+    "apa": "Lloyd, S. (1982). Least squares quantization in PCM. *IEEE Transactions on Information Theory, 28*(2), 129–137. https://doi.org/10.1109/TIT.1982.1056489",
+    "where": "Whole paper",
+    "note": "The original Lloyd algorithm (alternating nearest-centre assignment and centroid update) behind k-means.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.2 'K-means' (2.3.2.2 'Mini Batch K-Means'; 'Bisecting K-Means' is 2.3.6.5)",
     "note": "Python KMeans API; k-means++ initialisation, inertia, n_init, practical caveats.",
     "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
-  "kernel_kmeans": [],
+  "kernel_kmeans": [
+   {
+    "apa": "Dhillon, I. S., Guan, Y., & Kulis, B. (2004). Kernel k-means: Spectral clustering and normalized cuts. In *Proceedings of the tenth ACM SIGKDD international conference on Knowledge discovery and data mining* (pp. 551–556). ACM. https://doi.org/10.1145/1014052.1014118",
+    "where": "Whole paper",
+    "note": "Kernel k-means and its equivalence with weighted normalized-cut spectral clustering.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   }
+  ],
   "hierarchical_ward": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'Hierarchical clustering', subsection 'Different linkage type: Ward, complete, average, and single linkage'",
+    "apa": "Ward, J. H. (1963). Hierarchical grouping to optimize an objective function. *Journal of the American Statistical Association, 58*(301), 236–244. https://doi.org/10.1080/01621459.1963.10500845",
+    "where": "Whole paper",
+    "note": "Ward's minimum-variance agglomerative criterion.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.6 'Hierarchical clustering', subsection 2.3.6.1 'Different linkage type: Ward, complete, average, and single linkage'",
     "note": "AgglomerativeClustering with Ward linkage, connectivity constraints, dendrogram visualisation.",
     "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "gmm_em": [
@@ -32,21 +54,28 @@
     "where": "Section 9.2 'Mixtures of Gaussians', pp. 430–439 (9.2.1 Maximum likelihood p. 432; 9.2.2 EM for Gaussian mixtures p. 435)",
     "note": "Latent-variable view of the GMM, responsibilities, EM updates, singularities of the likelihood.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
     "apa": "Bishop, C. M. (2006). *Pattern recognition and machine learning*. Springer.",
     "where": "Sections 9.3 'An Alternative View of EM' and 9.4 'The EM Algorithm in General', pp. 439–455 (9.3.2 Relation to K-means p. 443; 9.4 p. 450; Exercises from p. 455)",
     "note": "General EM via the lower bound / KL decomposition; K-means as the small-variance limit of EM for a GMM.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Gaussian mixture models*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/mixture.html",
-    "where": "Section 'Gaussian Mixture' (EM subsection anchor 'expectation_maximization')",
+    "apa": "Dempster, A. P., Laird, N. M., & Rubin, D. B. (1977). Maximum likelihood from incomplete data via the EM algorithm. *Journal of the Royal Statistical Society Series B: Statistical Methodology, 39*(1), 1–22. https://doi.org/10.1111/j.2517-6161.1977.tb01600.x",
+    "where": "Whole paper",
+    "note": "The EM algorithm paper.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Gaussian mixture models*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/mixture.html",
+    "where": "Section 2.1.1 'Gaussian Mixture' (EM subsection anchor 'expectation_maximization')",
     "note": "GaussianMixture API, covariance_type options, initialisation.",
     "url": "https://scikit-learn.org/stable/modules/mixture.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "model_selection_bic_icl": [
@@ -55,39 +84,95 @@
     "where": "Section 4.4.1 'Model comparison and BIC', pp. 216–217",
     "note": "Derives BIC from the Laplace approximation to the model evidence (cites Schwarz, 1978). ICL is not covered.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Gaussian mixture models*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/mixture.html",
-    "where": "Section 'Gaussian Mixture' — text says the BIC criterion can be used to select the number of components",
+    "apa": "Schwarz, G. (1978). Estimating the dimension of a model. *The Annals of Statistics, 6*(2), 461–464. https://doi.org/10.1214/aos/1176344136",
+    "where": "Whole paper",
+    "note": "Origin of BIC.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Biernacki, C., Celeux, G., & Govaert, G. (2000). Assessing a mixture model for clustering with the integrated completed likelihood. *IEEE Transactions on Pattern Analysis and Machine Intelligence, 22*(7), 719–725. https://doi.org/10.1109/34.865189",
+    "where": "Whole paper",
+    "note": "ICL criterion: BIC penalised by the classification entropy; favours well-separated clusters.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Gaussian mixture models*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/mixture.html",
+    "where": "Section 2.1.1 'Gaussian Mixture': the text says the BIC criterion can be used to select the number of components",
     "note": "GaussianMixture.bic()/aic() for choosing K in Python.",
     "url": "https://scikit-learn.org/stable/modules/mixture.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "cluster_quality": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'Clustering performance evaluation', subsections 'Silhouette Coefficient', 'Calinski-Harabasz Index', 'Davies-Bouldin Index'",
-    "note": "Definitions, formulas, pros/cons of internal indices; silhouette_score, calinski_harabasz_score.",
-    "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "apa": "Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. *Journal of Computational and Applied Mathematics, 20*, 53–65. https://doi.org/10.1016/0377-0427(87)90125-7",
+    "where": "Whole paper",
+    "note": "Silhouette width s(i) and silhouette plots.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
-    "where": "Section 'Principal component analysis (PCA)' — explained_variance_ratio_",
+    "apa": "Caliński, T., & Harabasz, J. (1974). A dendrite method for cluster analysis. *Communications in Statistics, 3*(1), 1–27. https://doi.org/10.1080/03610927408827101",
+    "where": "Whole paper",
+    "note": "Origin of the Calinski–Harabasz (variance-ratio) index.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.11 'Clustering performance evaluation', subsections 2.3.11.5 'Silhouette Coefficient', 2.3.11.6 'Calinski-Harabasz Index', 2.3.11.7 'Davies-Bouldin Index'",
+    "note": "Definitions, formulas, pros/cons of internal indices; silhouette_score, calinski_harabasz_score.",
+    "url": "https://scikit-learn.org/stable/modules/clustering.html",
+    "check": "Live documentation page loaded; section read."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
+    "where": "Section 2.5.1 'Principal component analysis (PCA)', explained_variance_ratio_",
     "note": "Explained-variance ratio of PCA components (useful for the explained-variance criterion).",
     "url": "https://scikit-learn.org/stable/modules/decomposition.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "partition_comparison": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'Clustering performance evaluation', subsections 'Rand index' (Rand and adjusted Rand), 'Mutual Information based scores' (MI, AMI, NMI), 'Contingency Matrix', 'Pair Confusion Matrix'",
+    "apa": "Rand, W. M. (1971). Objective criteria for the evaluation of clustering methods. *Journal of the American Statistical Association, 66*(336), 846–850. https://doi.org/10.1080/01621459.1971.10482356",
+    "where": "Whole paper",
+    "note": "The Rand index.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Hubert, L., & Arabie, P. (1985). Comparing partitions. *Journal of Classification, 2*(1), 193–218. https://doi.org/10.1007/BF01908075",
+    "where": "Whole paper",
+    "note": "The adjusted (for chance) Rand index.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Vinh, N. X., Epps, J., & Bailey, J. (2010). Information theoretic measures for clusterings comparison: Variants, properties, normalization and correction for chance. *Journal of Machine Learning Research, 11*(95), 2837–2854. https://jmlr.org/papers/v11/vinh10a.html",
+    "where": "Whole paper",
+    "note": "NMI variants and adjusted mutual information (AMI); which normalisation to use.",
+    "url": "https://jmlr.org/papers/v11/vinh10a.html",
+    "check": "Checked on the paper's JMLR page."
+   },
+   {
+    "apa": "Danon, L., Díaz-Guilera, A., Duch, J., & Arenas, A. (2005). Comparing community structure identification. *Journal of Statistical Mechanics: Theory and Experiment, 2005*(09), P09008. https://doi.org/10.1088/1742-5468/2005/09/P09008",
+    "where": "Whole paper",
+    "note": "Popularised NMI for comparing community partitions (graph side of the vector-vs-graph comparison).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.11 'Clustering performance evaluation', subsections 2.3.11.1 'Rand index' (Rand and adjusted Rand), 2.3.11.2 'Mutual Information based scores' (MI, AMI, NMI), 2.3.11.8 'Contingency Matrix', 2.3.11.9 'Pair Confusion Matrix'",
     "note": "Pair-counting and information-theoretic agreement measures with chance-correction discussion and original references.",
     "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "pca": [
@@ -96,14 +181,28 @@
     "where": "Section 12.1 'Principal Component Analysis', pp. 561–570 (12.1.1 Maximum variance formulation p. 561; 12.1.2 Minimum-error formulation p. 563; 12.1.3 Applications p. 565; 12.1.4 High-dimensional data p. 569)",
     "note": "Both derivations of PCA, standardisation/whitening, choosing M. Probabilistic PCA follows in 12.2 (pp. 570–586).",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
-    "where": "Section 'Principal component analysis (PCA)' — 'Exact PCA and probabilistic interpretation'",
+    "apa": "Pearson, K. (1901). LIII. On lines and planes of closest fit to systems of points in space. *The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, 2*(11), 559–572. https://doi.org/10.1080/14786440109462720",
+    "where": "Whole paper",
+    "note": "The geometric (best-fitting subspace) origin of PCA.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Hotelling, H. (1933). Analysis of a complex of statistical variables into principal components. *Journal of Educational Psychology, 24*(6), 417–441. https://doi.org/10.1037/h0071325",
+    "where": "Whole paper",
+    "note": "The variance-maximisation origin of PCA (coined 'principal components').",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
+    "where": "Section 2.5.1 'Principal component analysis (PCA)', 2.5.1.1 'Exact PCA and probabilistic interpretation'",
     "note": "PCA API, explained_variance_ratio_, randomized/incremental variants.",
     "url": "https://scikit-learn.org/stable/modules/decomposition.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "mds": [
@@ -112,14 +211,21 @@
     "where": "Section 12.4.3 'Modelling nonlinear manifolds', p. 596 (section spans pp. 595–599)",
     "note": "One short paragraph on MDS: preserves pairwise distances; equals PCA for Euclidean distances; nonmetric MDS (cites Cox & Cox, 2000).",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
-    "where": "Section 'Multi-dimensional Scaling (MDS)'",
+    "apa": "Torgerson, W. S. (1952). Multidimensional scaling: I. Theory and method. *Psychometrika, 17*(4), 401–419. https://doi.org/10.1007/BF02288916",
+    "where": "Whole paper",
+    "note": "Classical (Torgerson) metric MDS.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
+    "where": "Section 2.2.8 'Multi-dimensional Scaling (MDS)'",
     "note": "Metric/non-metric MDS (SMACOF) in scikit-learn; stress.",
     "url": "https://scikit-learn.org/stable/modules/manifold.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "kernel_pca": [
@@ -128,14 +234,21 @@
     "where": "Section 12.3 'Kernel PCA', pp. 586–591",
     "note": "Kernel-trick derivation of PCA in feature space, centring of the Gram matrix, pre-image issue.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
-    "where": "Section 'Kernel Principal Component Analysis (kPCA)' — 'Exact Kernel PCA', 'Choice of solver for Kernel PCA'",
+    "apa": "Schölkopf, B., Smola, A., & Müller, K.-R. (1998). Nonlinear component analysis as a kernel eigenvalue problem. *Neural Computation, 10*(5), 1299–1319. https://doi.org/10.1162/089976698300017467",
+    "where": "Whole paper",
+    "note": "The kernel PCA paper.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Decomposing signals in components (matrix factorization problems)*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/decomposition.html",
+    "where": "Section 2.5.2 'Kernel Principal Component Analysis (kPCA)', 2.5.2.1 'Exact Kernel PCA', 2.5.2.2 'Choice of solver for Kernel PCA'",
     "note": "KernelPCA API, kernels, inverse_transform / pre-images.",
     "url": "https://scikit-learn.org/stable/modules/decomposition.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "isomap": [
@@ -144,39 +257,53 @@
     "where": "Section 12.4.3 'Modelling nonlinear manifolds', pp. 596–597",
     "note": "Isomap described: kNN/epsilon graph, geodesic distances via shortest paths, then MDS (cites Tenenbaum et al., 2000).",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
-    "where": "Section 'Isomap'",
+    "apa": "Tenenbaum, J. B., de Silva, V., & Langford, J. C. (2000). A global geometric framework for nonlinear dimensionality reduction. *Science, 290*(5500), 2319–2323. https://doi.org/10.1126/science.290.5500.2319",
+    "where": "Whole paper",
+    "note": "The Isomap paper.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
+    "where": "Section 2.2.2 'Isomap'",
     "note": "Isomap API and complexity notes.",
     "url": "https://scikit-learn.org/stable/modules/manifold.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "tsne": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
-    "where": "Section 't-distributed Stochastic Neighbor Embedding (t-SNE)' and 'Tips on practical use'",
-    "note": "TSNE API, perplexity, early exaggeration, Barnes-Hut; cautions on interpreting plots.",
-    "url": "https://scikit-learn.org/stable/modules/manifold.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "apa": "van der Maaten, L., & Hinton, G. (2008). Visualizing data using t-SNE. *Journal of Machine Learning Research, 9*(86), 2579–2605. https://jmlr.org/papers/v9/vandermaaten08a.html",
+    "where": "Whole paper",
+    "note": "The t-SNE paper.",
+    "url": "https://jmlr.org/papers/v9/vandermaaten08a.html",
+    "check": "Checked on the paper's JMLR page."
    },
    {
-    "apa": "Wattenberg, M., Viégas, F., & Johnson, I. (n.d.). How to use t-SNE effectively. *Distill*. https://distill.pub/2016/misread-tsne/",
+    "apa": "scikit-learn developers. (n.d.). *Manifold learning*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/manifold.html",
+    "where": "Section 2.2.9 't-distributed Stochastic Neighbor Embedding (t-SNE)' and 2.2.10 'Tips on practical use'",
+    "note": "TSNE API, perplexity, early exaggeration, Barnes-Hut; cautions on interpreting plots.",
+    "url": "https://scikit-learn.org/stable/modules/manifold.html",
+    "check": "Live documentation page loaded; section read."
+   },
+   {
+    "apa": "Wattenberg, M., Viégas, F., & Johnson, I. (2016). How to use t-SNE effectively. *Distill, 1*(10), e2. https://doi.org/10.23915/distill.00002",
     "where": "Whole interactive article",
     "note": "Interactive demonstration of how perplexity, iterations, cluster sizes and distances can mislead in t-SNE plots.",
     "url": "https://distill.pub/2016/misread-tsne/",
-    "check": "Partly checked: details taken from the authors' own source files; the publisher page could not be reached."
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
    }
   ],
   "umap": [
    {
-    "apa": "McInnes, L., Healy, J., & Melville, J. (2018). *UMAP: Uniform manifold approximation and projection for dimension reduction* (arXiv:1802.03426). arXiv.",
-    "where": "Whole paper (arXiv e-print 1802.03426, stat.ML)",
-    "note": "Original UMAP algorithm paper (fuzzy simplicial sets, kNN graph, cross-entropy layout).",
+    "apa": "McInnes, L., Healy, J., & Melville, J. (2018). *UMAP: Uniform manifold approximation and projection for dimension reduction* (arXiv:1802.03426). arXiv. https://arxiv.org/abs/1802.03426",
+    "where": "Whole paper (current version v3, 2020-09-18)",
+    "note": "Original UMAP paper (fuzzy simplicial sets, kNN graph, cross-entropy layout). Cite with the version you read.",
     "url": "https://arxiv.org/abs/1802.03426",
-    "check": "Partly checked: details taken from the authors' own source files; the publisher page could not be reached."
+    "check": "Checked through the arXiv API."
    }
   ],
   "mahalanobis_robust": [
@@ -185,39 +312,60 @@
     "where": "Section 2.3 'The Gaussian Distribution', p. 80 (section spans pp. 78–110)",
     "note": "Defines the Mahalanobis distance as the quadratic form in the Gaussian exponent; elliptical contours via the eigen-decomposition of the covariance. Robust MVE/MCD are not covered.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Covariance estimation*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/covariance.html",
-    "where": "Sections 'Robust Covariance Estimation' and 'Minimum Covariance Determinant'",
+    "apa": "Rousseeuw, P. J. (1984). Least median of squares regression. *Journal of the American Statistical Association, 79*(388), 871–880. https://doi.org/10.1080/01621459.1984.10477105",
+    "where": "Whole paper",
+    "note": "Least median of squares (LMS) regression. Commonly cited as where the minimum volume ellipsoid (MVE) estimator was introduced; that claim was NOT checked here (no abstract or full text reachable).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Rousseeuw, P. J., & Van Driessen, K. (1999). A fast algorithm for the minimum covariance determinant estimator. *Technometrics, 41*(3), 212–223. https://doi.org/10.1080/00401706.1999.10485670",
+    "where": "Whole paper",
+    "note": "FAST-MCD, the algorithm behind sklearn MinCovDet / EllipticEnvelope; robust Mahalanobis distances.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Covariance estimation*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/covariance.html",
+    "where": "Sections 2.6.4 'Robust Covariance Estimation' and 2.6.4.1 'Minimum Covariance Determinant'",
     "note": "MinCovDet (FAST-MCD) and robust Mahalanobis distances in Python, with references to Rousseeuw's papers.",
     "url": "https://scikit-learn.org/stable/modules/covariance.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "where": "Section 'Fitting an elliptic envelope'",
+    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
+    "where": "Section 2.7.3.1 'Fitting an elliptic envelope'",
     "note": "EllipticEnvelope: outlier detection by robust covariance (MCD).",
     "url": "https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "knn_lof": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "where": "Sections 'Local Outlier Factor' and 'Novelty detection with Local Outlier Factor'",
+    "apa": "Breunig, M. M., Kriegel, H.-P., Ng, R. T., & Sander, J. (2000). LOF: Identifying density-based local outliers. In *Proceedings of the 2000 ACM SIGMOD international conference on Management of data* (pp. 93–104). ACM. https://doi.org/10.1145/342009.335388",
+    "where": "Whole paper",
+    "note": "Local Outlier Factor (reachability distance, local reachability density).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
+    "where": "Sections 2.7.3.3 'Local Outlier Factor' and 2.7.4 'Novelty detection with Local Outlier Factor'",
     "note": "LocalOutlierFactor API, k (n_neighbors), negative_outlier_factor_.",
     "url": "https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "dbscan": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'DBSCAN' (also 'HDBSCAN' and 'OPTICS' sections that follow)",
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.7 'DBSCAN' (also 2.3.8 'HDBSCAN' and 2.3.9 'OPTICS')",
     "note": "eps / min_samples, core vs border vs noise points; DBSCAN noise label usable as an outlier flag.",
     "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "one_class": [
@@ -226,71 +374,249 @@
     "where": "Section 7.1.3 'Multiclass SVMs', p. 339 (final paragraph, on single-class SVMs)",
     "note": "One paragraph contrasting Schölkopf et al. (2001) nu-hyperplane one-class SVM with Tax & Duin (1999) smallest enclosing sphere; equivalent for translation-invariant kernels.",
     "url": "https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf",
-    "check": "Section and pages read in the PDF."
+    "check": "Section and printed pages read in the PDF."
    },
    {
-    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "where": "Sections 'Novelty Detection' (One-Class SVM) and 'Scaling up the One-Class SVM'",
+    "apa": "Schölkopf, B., Platt, J. C., Shawe-Taylor, J., Smola, A. J., & Williamson, R. C. (2001). Estimating the support of a high-dimensional distribution. *Neural Computation, 13*(7), 1443–1471. https://doi.org/10.1162/089976601750264965",
+    "where": "Whole paper",
+    "note": "The nu one-class SVM.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Tax, D. M. J., & Duin, R. P. W. (2004). Support vector data description. *Machine Learning, 54*(1), 45–66. https://doi.org/10.1023/B:MACH.0000008084.60811.49",
+    "where": "Whole paper",
+    "note": "SVDD: smallest enclosing hypersphere in feature space.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
+    "where": "Sections 2.7.2 'Novelty Detection' (One-Class SVM) and 2.7.2.1 'Scaling up the One-Class SVM'",
     "note": "OneClassSVM and SGDOneClassSVM APIs; nu parameter.",
     "url": "https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "isolation_forest": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "where": "Section 'Isolation Forest'",
+    "apa": "Liu, F. T., Ting, K. M., & Zhou, Z.-H. (2008). Isolation forest. In *2008 Eighth IEEE International Conference on Data Mining* (pp. 413–422). IEEE. https://doi.org/10.1109/ICDM.2008.17",
+    "where": "Whole paper",
+    "note": "The isolation forest paper (path-length anomaly score).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Novelty and Outlier Detection*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/outlier_detection.html",
+    "where": "Section 2.7.3.2 'Isolation Forest'",
     "note": "IsolationForest API, path-length anomaly score, contamination.",
     "url": "https://scikit-learn.org/stable/modules/outlier_detection.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "graph_basics": [
    {
-    "apa": "NetworkX developers. (n.d.). *Centrality*. NetworkX reference. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/centrality.html",
-    "where": "Sections 'Degree' (degree/in/out-degree centrality), 'Eigenvector', 'Closeness', 'Betweenness' (betweenness_centrality, edge_betweenness_centrality)",
-    "note": "Centrality functions for directed/weighted graphs in Python.",
-    "url": "https://networkx.org/documentation/stable/reference/algorithms/centrality.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "apa": "Freeman, L. C. (1977). A set of measures of centrality based on betweenness. *Sociometry, 40*(1), 35. https://doi.org/10.2307/3033543",
+    "where": "Whole paper",
+    "note": "Original betweenness centrality.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
    },
    {
-    "apa": "NetworkX developers. (n.d.). *Link Analysis*. NetworkX reference. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/link_analysis.html",
+    "apa": "NetworkX developers. (n.d.). *Centrality*. NetworkX 3.7 documentation. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/centrality.html",
+    "where": "Sections 'Degree' (degree/in/out-degree centrality), 'Eigenvector', 'Closeness', '(Shortest Path) Betweenness' (betweenness_centrality, edge_betweenness_centrality)",
+    "note": "Centrality functions for directed/weighted graphs in Python.",
+    "url": "https://networkx.org/documentation/stable/reference/algorithms/centrality.html",
+    "check": "Live documentation page loaded; section read."
+   },
+   {
+    "apa": "NetworkX developers. (n.d.). *Link Analysis*. NetworkX 3.7 documentation. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/link_analysis.html",
     "where": "Section 'PageRank' (pagerank, google_matrix) and 'Hits'",
     "note": "PageRank on a weighted directed OD graph.",
     "url": "https://networkx.org/documentation/stable/reference/algorithms/link_analysis.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "modularity_louvain": [
    {
-    "apa": "NetworkX developers. (n.d.). *Communities*. NetworkX reference. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/community.html",
-    "where": "Sections 'Louvain Community Detection' (louvain_communities, louvain_partitions), 'Leiden Community Detection', 'Modularity-based communities'; quality function modularity() in networkx.algorithms.community.quality",
+    "apa": "Girvan, M., & Newman, M. E. J. (2002). Community structure in social and biological networks. *Proceedings of the National Academy of Sciences, 99*(12), 7821–7826. https://doi.org/10.1073/pnas.122653799",
+    "where": "Whole paper",
+    "note": "Edge-betweenness divisive community detection, the origin of the modern community-detection literature.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Newman, M. E. J., & Girvan, M. (2004). Finding and evaluating community structure in networks. *Physical Review E, 69*(2), Article 026113. https://doi.org/10.1103/PhysRevE.69.026113",
+    "where": "Whole paper",
+    "note": "Defines modularity Q.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Blondel, V. D., Guillaume, J.-L., Lambiotte, R., & Lefebvre, E. (2008). Fast unfolding of communities in large networks. *Journal of Statistical Mechanics: Theory and Experiment, 2008*(10), P10008. https://doi.org/10.1088/1742-5468/2008/10/P10008",
+    "where": "Whole paper",
+    "note": "The Louvain algorithm.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Traag, V. A., Waltman, L., & van Eck, N. J. (2019). From Louvain to Leiden: Guaranteeing well-connected communities. *Scientific Reports, 9*(1), Article 5233. https://doi.org/10.1038/s41598-019-41695-z",
+    "where": "Whole paper",
+    "note": "The Leiden algorithm: fixes Louvain's badly connected communities.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "NetworkX developers. (n.d.). *Communities*. NetworkX 3.7 documentation. Retrieved November 17, 2026, from https://networkx.org/documentation/stable/reference/algorithms/community.html",
+    "where": "Sections 'Louvain Community Detection' (louvain_communities, louvain_partitions), 'Leiden Community Detection', 'Modularity-based communities', 'Measuring partitions' (community.quality.modularity)",
     "note": "Louvain and Leiden implementations and the modularity score; louvain.py handles directed graphs (is_directed flag). leiden_communities is present in networkx 3.7.",
     "url": "https://networkx.org/documentation/stable/reference/algorithms/community.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "spectral_clustering": [
    {
-    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn user guide. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
-    "where": "Section 'Spectral clustering' (label-assignment strategies; 'Spectral Clustering Graphs' for affinity='precomputed')",
+    "apa": "von Luxburg, U. (2007). A tutorial on spectral clustering. *Statistics and Computing, 17*(4), 395–416. https://doi.org/10.1007/s11222-007-9033-z",
+    "where": "Whole paper",
+    "note": "Graph Laplacians, normalised spectral clustering, links to graph cuts and random walks.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "scikit-learn developers. (n.d.). *Clustering*. scikit-learn 1.9.1 documentation. Retrieved November 17, 2026, from https://scikit-learn.org/stable/modules/clustering.html",
+    "where": "Section 2.3.5 'Spectral clustering' (2.3.5.1 label-assignment strategies; 2.3.5.2 'Spectral Clustering Graphs')",
     "note": "SpectralClustering on a precomputed affinity / graph adjacency matrix.",
     "url": "https://scikit-learn.org/stable/modules/clustering.html",
-    "check": "Section heading checked in the project's documentation source; the live web page could not be loaded."
+    "check": "Live documentation page loaded; section read."
    }
   ],
   "sbm": [
    {
-    "apa": "Chiquet, J., Donnet, S., Barbillon, P., & Lacoste, L. (2026). *sbm: Stochastic blockmodels* (Version 1.0.0) [R package]. https://CRAN.R-project.org/package=sbm",
+    "apa": "Holland, P. W., Laskey, K. B., & Leinhardt, S. (1983). Stochastic blockmodels: First steps. *Social Networks, 5*(2), 109–137. https://doi.org/10.1016/0378-8733(83)90021-7",
+    "where": "Whole paper",
+    "note": "The original stochastic block model.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Snijders, T. A. B., & Nowicki, K. (1997). Estimation and prediction for stochastic blockmodels for graphs with latent block structure. *Journal of Classification, 14*(1), 75–100. https://doi.org/10.1007/s003579900004",
+    "where": "Whole paper",
+    "note": "SBM with latent (unknown) blocks; EM / Gibbs estimation.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Nowicki, K., & Snijders, T. A. B. (2001). Estimation and prediction for stochastic blockstructures. *Journal of the American Statistical Association, 96*(455), 1077–1087. https://doi.org/10.1198/016214501753208735",
+    "where": "Whole paper",
+    "note": "Bayesian SBM with any number of blocks, including directed relations.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Daudin, J.-J., Picard, F., & Robin, S. (2008). A mixture model for random graphs. *Statistics and Computing, 18*(2), 173–183. https://doi.org/10.1007/s11222-007-9046-7",
+    "where": "Whole paper",
+    "note": "Variational EM for the binary SBM, with an ICL criterion for choosing the number of blocks.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Mariadassou, M., Robin, S., & Vacher, C. (2010). Uncovering latent structure in valued graphs: A variational approach. *The Annals of Applied Statistics, 4*(2), 715–742. https://doi.org/10.1214/10-AOAS361",
+    "where": "Whole paper",
+    "note": "Weighted/valued SBM (e.g. Poisson edge counts) with variational EM and ICL; the natural model for OD trip counts.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Karrer, B., & Newman, M. E. J. (2011). Stochastic blockmodels and community structure in networks. *Physical Review E, 83*(1), Article 016107. https://doi.org/10.1103/PhysRevE.83.016107",
+    "where": "Whole paper",
+    "note": "Degree-corrected SBM (handles heterogeneous station degrees).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Abbe, E. (2018). Community detection and stochastic block models: Recent developments. *Journal of Machine Learning Research, 18*(177), 1–86. https://jmlr.org/papers/v18/16-480.html",
+    "where": "Whole paper",
+    "note": "Survey of SBM theory: recovery thresholds, exact and weak recovery, algorithms.",
+    "url": "https://jmlr.org/papers/v18/16-480.html",
+    "check": "Checked on the paper's JMLR page."
+   },
+   {
+    "apa": "Peixoto, T. P. (2019). Bayesian stochastic blockmodeling. In P. Doreian, V. Batagelj, & A. Ferligoj (Eds.), *Advances in network clustering and blockmodeling* (pp. 289–332). Wiley. https://doi.org/10.1002/9781119483298.ch11",
+    "where": "Whole chapter (free preprint: arXiv:1705.10225)",
+    "note": "Accessible review of Bayesian SBM inference (microcanonical, degree-corrected, nested SBM; model selection by description length), as implemented in graph-tool.",
+    "url": "https://arxiv.org/abs/1705.10225",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Chiquet, J., Donnet, S., Barbillon, P., & Lacoste, L. (2026). *sbm: Stochastic blockmodels* (Version 1.0.0) [R package]. The R Foundation. https://doi.org/10.32614/CRAN.package.sbm",
     "where": "Package DESCRIPTION / reference manual",
     "note": "Fits simple, bipartite, multipartite and multiplex SBMs, undirected or directed, with Bernoulli, Poisson or Gaussian edge laws (variational EM + ICL via the blockmodels package).",
     "url": "https://CRAN.R-project.org/package=sbm",
-    "check": "Checked against the package's DESCRIPTION file (CRAN mirror); the CRAN page could not be loaded."
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
    }
   ],
-  "community_detection_survey": [],
-  "anomaly_survey": [],
-  "bikeshare_applications": []
+  "community_detection_survey": [
+   {
+    "apa": "Fortunato, S. (2010). Community detection in graphs. *Physics Reports, 486*(3–5), 75–174. https://doi.org/10.1016/j.physrep.2009.11.002",
+    "where": "Whole paper",
+    "note": "Comprehensive survey: modularity and its resolution limit, spectral, dynamic and statistical-inference methods, plus partition comparison.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   }
+  ],
+  "anomaly_survey": [
+   {
+    "apa": "Chandola, V., Banerjee, A., & Kumar, V. (2009). Anomaly detection: A survey. *ACM Computing Surveys, 41*(3), 1–58. https://doi.org/10.1145/1541880.1541882",
+    "where": "Whole paper",
+    "note": "Standard survey of anomaly types (point, contextual, collective) and families of detectors.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   }
+  ],
+  "bikeshare_applications": [
+   {
+    "apa": "Côme, E., & Oukhellou, L. (2014). Model-based count series clustering for bike sharing system usage mining: A case study with the Vélib' system of Paris. *ACM Transactions on Intelligent Systems and Technology, 5*(3), 1–21. https://doi.org/10.1145/2560188",
+    "where": "Whole paper",
+    "note": "Clusters Vélib' stations by count series of hourly usage with a generative (Poisson-mixture-type) model. Closest analogue to station-profile clustering.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Randriamanamihaga, A. N., Côme, E., Oukhellou, L., & Govaert, G. (2014). Clustering the Vélib' dynamic Origin/Destination flows using a family of Poisson mixture models. *Neurocomputing, 141*, 124–138. https://doi.org/10.1016/j.neucom.2014.01.050",
+    "where": "Whole paper",
+    "note": "Poisson mixture models for clustering time-varying OD flows of Vélib'. Directly relevant to the OD-graph and SBM part.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Borgnat, P., Abry, P., Flandrin, P., Robardet, C., Rouquier, J.-B., & Fleury, E. (2011). Shared bicycles in a city: A signal processing and data analysis perspective. *Advances in Complex Systems, 14*(03), 415–438. https://doi.org/10.1142/S0219525911002950",
+    "where": "Whole paper",
+    "note": "Lyon Vélo'v: nonstationary modelling of trip counts plus community detection on the station-to-station flow network.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Vogel, P., Greiser, T., & Mattfeld, D. C. (2011). Understanding bike-sharing systems using data mining: Exploring activity patterns. *Procedia - Social and Behavioral Sciences, 20*, 514–523. https://doi.org/10.1016/j.sbspro.2011.08.058",
+    "where": "Whole paper",
+    "note": "Clusters stations by their pick-up/return activity patterns (Vienna). Note based on the title only.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Zaltz Austwick, M., O'Brien, O., Strano, E., & Viana, M. (2013). The structure of spatial networks and communities in bicycle sharing systems. *PLoS ONE, 8*(9), e74685. https://doi.org/10.1371/journal.pone.0074685",
+    "where": "Whole paper",
+    "note": "Community detection on bike-share flow networks across several cities. Whether London is among them was NOT checked: the note is based on the title only, so check the abstract.",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   },
+   {
+    "apa": "Bouveyron, C., Côme, E., & Jacques, J. (2015). The discriminative functional mixture model for a comparative analysis of bike sharing systems. *The Annals of Applied Statistics, 9*(4), 1726–1760. https://doi.org/10.1214/15-AOAS861",
+    "where": "Whole paper",
+    "note": "Discriminative functional mixture model (functional-data clustering) used to analyse and compare several European bike-sharing systems and find common operating patterns (per the Crossref abstract).",
+    "url": "",
+    "check": "Bibliographic details checked against Crossref; DOI resolves."
+   }
+  ]
  },
  "videos": {
   "kmeans": [
@@ -301,28 +627,28 @@
     "duration": "",
     "year": "",
     "level": "intro",
-    "note": "Short intuitive walk-through of Lloyd's algorithm, random restarts and choosing K via an elbow plot.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Short intuitive walk-through of k-means (Lloyd's algorithm), random restarts and choosing K.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Clustering: K-means and Hierarchical",
-    "channel": "Luis Serrano",
+    "channel": "Luis Serrano Academy",
     "url": "https://www.youtube.com/watch?v=QXOkPvFM6NU",
     "duration": "",
-    "year": "2019",
+    "year": "",
     "level": "intro",
-    "note": "Friendly visual intro to both k-means and agglomerative hierarchical clustering.",
-    "check": "Title, author and link seen on reference pages found by search; not opened."
+    "note": "Friendly visual intro to k-means and agglomerative hierarchical clustering side by side.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Introduction to Machine Learning - 09 - Clustering and expectation-maximization",
-    "channel": "Dmitry Kobak (Univ. Tübingen lecture series)",
+    "channel": "Tübingen Machine Learning",
     "url": "https://www.youtube.com/watch?v=mU3GZaOoVDA",
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "University lecture: k-means, mixture models and EM in one session; rigorous companion to the short explainers.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Dmitry Kobak's Univ. Tübingen lecture (2020/21 course): k-means, Gaussian mixtures and EM; rigorous companion to the explainers.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "hierarchical_ward": [
@@ -333,18 +659,28 @@
     "duration": "",
     "year": "",
     "level": "intro",
-    "note": "Agglomerative clustering, distance/linkage choices and dendrograms (heatmap context); linkage incl. the idea behind Ward is not confirmed to be covered.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Agglomerative clustering, distance and linkage choices, dendrograms.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Classification ascendante hiérarchique (cours 1/4) : les données, la problématique",
+    "channel": "François Husson",
+    "url": "https://www.youtube.com/watch?v=SE_4dLh5vXY",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "FRENCH. François Husson (Agrocampus/FactoMineR) CAH course part 1/4: data, problem, tree construction, distances and Ward's criterion (Ward per search snippet of the description).",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Clustering: K-means and Hierarchical",
-    "channel": "Luis Serrano",
+    "channel": "Luis Serrano Academy",
     "url": "https://www.youtube.com/watch?v=QXOkPvFM6NU",
     "duration": "",
-    "year": "2019",
+    "year": "",
     "level": "intro",
-    "note": "Friendly visual intro to both k-means and agglomerative hierarchical clustering.",
-    "check": "Title, author and link seen on reference pages found by search; not opened."
+    "note": "Same Serrano video as under kmeans; second half covers hierarchical clustering.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "gmm_em": [
@@ -355,50 +691,126 @@
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "Lecture on GMMs as soft clustering and the EM algorithm for fitting them.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Alexander Ihler (UC Irvine) lecture: GMMs as soft clustering, EM updates.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Gaussian Mixture Models",
+    "channel": "Luis Serrano Academy",
+    "url": "https://www.youtube.com/watch?v=q71Niz856KE",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Visual intro to Gaussian mixture models as soft clustering (hard vs soft, fitting Gaussians).",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Introduction to Machine Learning - 09 - Clustering and expectation-maximization",
-    "channel": "Dmitry Kobak (Univ. Tübingen lecture series)",
+    "channel": "Tübingen Machine Learning",
     "url": "https://www.youtube.com/watch?v=mU3GZaOoVDA",
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "University lecture: k-means, mixture models and EM in one session; rigorous companion to the short explainers.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Same Kobak lecture as under kmeans; covers mixtures and EM.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
-  "pca": [
+  "model_selection_bic_icl": [
    {
-    "title": "StatQuest: PCA main ideas in only 5 minutes!!!",
-    "channel": "StatQuest with Josh Starmer",
-    "url": "https://www.youtube.com/watch?v=HMOI_lkzW08",
+    "title": "Gaussian Mixture Model (GMM) for clustering - calculate AIC/BIC",
+    "channel": "MEDIOCRE_GUY",
+    "url": "https://www.youtube.com/watch?v=ydyys-lNinI",
     "duration": "",
     "year": "",
     "level": "intro",
-    "note": "5-minute intuition for reading PCA plots; good first watch.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Code walkthrough: fit scikit-learn GMMs for several K and compare AIC/BIC. Small channel, practical not theoretical; ICL not covered.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "cluster_quality": [
+   {
+    "title": "Silhouette Score, Inliers, and Outliers",
+    "channel": "Orange Data Mining",
+    "url": "https://www.youtube.com/watch?v=a2Kg2_l3L8M",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Orange Data Mining (Univ. Ljubljana team) short on silhouette scores and using them to spot badly assigned points.",
+    "check": "Title and channel confirmed by YouTube."
    },
+   {
+    "title": "What Is Silhouette Score? Visually Explained",
+    "channel": "PhyLosophy",
+    "url": "https://www.youtube.com/watch?v=mWdxGajUiS8",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Visual explanation of silhouette: cohesion a(i), separation b(i), using it to pick a clustering. Small channel.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "partition_comparison": [
+   {
+    "title": "External cluster validation: rand index (RI) and adjusted rand index (ARI) - Ex. with 'iris' dataset",
+    "channel": "MEDIOCRE_GUY",
+    "url": "https://www.youtube.com/watch?v=pU5MaLe8Mxs",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Rand index and adjusted Rand index computed on iris clusterings. Small channel, tutorial level.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Understand & Implement Normalized Mutual Information (NMI) in Python (normalized_mutual_info_score)",
+    "channel": "Dr. Data Science",
+    "url": "https://www.youtube.com/watch?v=_Dts84LcsWU",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Normalized mutual information: definition and scikit-learn normalized_mutual_info_score. Small channel, tutorial level.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "pca": [
    {
     "title": "StatQuest: Principal Component Analysis (PCA), Step-by-Step",
     "channel": "StatQuest with Josh Starmer",
     "url": "https://www.youtube.com/watch?v=FgakZw6K1QQ",
     "duration": "",
-    "year": "2018",
+    "year": "",
     "level": "intro",
-    "note": "Step-by-step geometry of PCA: centring, fitting PCs, loadings, variance explained, scree plot.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Step-by-step geometry of PCA: centring, PCs, loadings, variance explained, scree plot.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Principal Component Analysis (PCA)",
+    "channel": "Steve Brunton",
+    "url": "https://www.youtube.com/watch?v=fkf4IBRSeEc",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Steve Brunton (Univ. Washington): PCA via the SVD, from his Data-Driven Science and Engineering series.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Introduction to Machine Learning - 10 - Principal component analysis",
-    "channel": "Dmitry Kobak (Univ. Tübingen lecture series)",
+    "channel": "Tübingen Machine Learning",
     "url": "https://www.youtube.com/watch?v=xBf_LZ5ZgY4",
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "Full university lecture on PCA (master's level).",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Dmitry Kobak's Tübingen lecture on PCA (master's level).",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Cours d'ACP  (partie 1/3) : données et problématique",
+    "channel": "François Husson",
+    "url": "https://www.youtube.com/watch?v=KrNbyM925wI",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "FRENCH. François Husson's ACP course, part 1/3: data and problem setting (FactoMineR course).",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "mds": [
@@ -410,19 +822,51 @@
     "year": "",
     "level": "intro",
     "note": "Classical MDS / PCoA from a distance matrix and how it relates to PCA.",
-    "check": "Title and link seen in search results; not opened."
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "kernel_pca": [
+   {
+    "title": "LinearData33cKernelPCA",
+    "channel": "Randy Ellis",
+    "url": "https://www.youtube.com/watch?v=BIkHksI9TNQ",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Randy Ellis (Queen's Univ. course): kernel PCA as spectral decomposition of the Gram matrix.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Lecture 9 on kernel methods: kernel PCA",
+    "channel": "Julien Mairal",
+    "url": "https://www.youtube.com/watch?v=oCt70znxn34",
+    "duration": "",
+    "year": "",
+    "level": "advanced",
+    "note": "Julien Mairal, kernel-methods course (MOSIG/MSIAM master, Univ. Grenoble-Alpes), lecture 9: kernel PCA.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "isomap": [
    {
-    "title": "Prof. Michael Trosset, \"Some Thoughts on Manifold Learning\"",
-    "channel": "Michael Trosset (seminar talk, Indiana Univ. Statistics)",
+    "title": "Dimension Reduction in Python - ISOMAP, LLE, and  TSNE",
+    "channel": "Stephanie Powers",
+    "url": "https://www.youtube.com/watch?v=C0D5aFpeKek",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Python demo of Isomap, LLE and t-SNE side by side. Small channel.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Prof. Michael Trosset, \"\"Some Thoughts on Manifold Learning\"\"",
+    "channel": "IU Computer Vision",
     "url": "https://www.youtube.com/watch?v=OpbVvHnADx0",
     "duration": "",
     "year": "",
     "level": "advanced",
-    "note": "Seminar talk on manifold learning by an MDS specialist; abstract mentions Isomap. Not an Isomap tutorial.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Seminar talk by Michael Trosset (MDS specialist) on manifold learning; abstract mentions Isomap. Not a tutorial.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "tsne": [
@@ -433,60 +877,104 @@
     "duration": "",
     "year": "",
     "level": "intro",
-    "note": "Intuition for t-SNE: neighbour similarities, the t-distribution, iterative embedding.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Intuition for t-SNE: neighbour similarities, t-distribution, iterative embedding.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Introduction to Machine Learning - 11 - Manifold learning and t-SNE",
-    "channel": "Dmitry Kobak (Univ. Tübingen lecture series)",
+    "channel": "Tübingen Machine Learning",
     "url": "https://www.youtube.com/watch?v=MnRskV3NY1k",
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "University lecture on manifold learning and t-SNE by a t-SNE researcher; may also touch MDS/Isomap (not confirmed).",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Dmitry Kobak's Tübingen lecture on manifold learning and t-SNE (by a t-SNE researcher).",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "Contrastive and neighbor embedding methods for data visualisation - Dmitry Kobak",
-    "channel": "Dmitry Kobak",
+    "channel": "Interaction Data Lab",
     "url": "https://www.youtube.com/watch?v=A2HmdO8cApw",
     "duration": "",
     "year": "",
     "level": "advanced",
-    "note": "Research talk relating t-SNE and UMAP (attraction/repulsion spectrum); useful for interpreting embeddings.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Kobak research talk relating t-SNE and UMAP (attraction/repulsion); helps interpret embeddings.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "umap": [
    {
-    "title": "PyData Ann Arbor: Leland McInnes",
-    "channel": "Leland McInnes (PyData Ann Arbor)",
-    "url": "https://m.youtube.com/watch?v=YPJQydzTLwQ",
+    "title": "UMAP Dimension Reduction, Main Ideas!!!",
+    "channel": "StatQuest with Josh Starmer",
+    "url": "https://www.youtube.com/watch?v=eN0wFzBA4Sc",
     "duration": "",
-    "year": "2018",
-    "level": "intermediate",
-    "note": "Talk by UMAP's author comparing PCA, t-SNE and UMAP and the umap-learn implementation.",
-    "check": "Title and link seen in search results; not opened."
+    "year": "",
+    "level": "intro",
+    "note": "StatQuest step-by-step intro to the main ideas of UMAP.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
-    "title": "M4CSA Leland McInnes: UMAP Theory and Practice",
-    "channel": "Leland McInnes (M4CSA)",
-    "url": "https://m.youtube.com/watch?v=1HatYEg91z4",
+    "title": "PyData Ann Arbor: Leland McInnes | PCA, t-SNE, and UMAP: Modern Approaches to Dimension Reduction",
+    "channel": "PyData",
+    "url": "https://www.youtube.com/watch?v=YPJQydzTLwQ",
     "duration": "",
-    "year": "2022",
-    "level": "advanced",
-    "note": "UMAP's author on the theory (fuzzy simplicial sets / kNN graph) and practice.",
-    "check": "Title and link seen in search results; not opened."
+    "year": "",
+    "level": "intermediate",
+    "note": "Talk by UMAP's author Leland McInnes comparing PCA, t-SNE and UMAP.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
     "title": "A Bluffer's Guide to Dimension Reduction - Leland McInnes",
-    "channel": "Leland McInnes",
+    "channel": "PyData",
     "url": "https://www.youtube.com/watch?v=9iol3Lk6kyU",
     "duration": "",
-    "year": "2018",
+    "year": "",
     "level": "intermediate",
-    "note": "Survey of dimension-reduction methods (matrix-factorisation vs neighbour-graph families); good bridge PCA -> MDS -> t-SNE/UMAP.",
-    "check": "Title, speaker and link seen in search results; not opened."
+    "note": "McInnes survey of dimension reduction (matrix factorisation vs neighbour graphs): bridge from PCA/MDS to t-SNE/UMAP.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "mahalanobis_robust": [
+   {
+    "title": "What are Mahalanobis Distances",
+    "channel": "Aric LaBarr",
+    "url": "https://www.youtube.com/watch?v=-F1f5mefSi0",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Aric LaBarr: Mahalanobis distance as a multivariate z-score for outliers. Robust (MCD) estimation not covered.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Mahalanobis Distance",
+    "channel": "Meerkat Statistics",
+    "url": "https://www.youtube.com/watch?v=K-Hk1haIrXE",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "From Euclidean distance to Mahalanobis via linear transformations / covariance geometry.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "23: Mahalanobis distance",
+    "channel": "Matthew E. Clapham",
+    "url": "https://www.youtube.com/watch?v=spNpfmWZBmg",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Mahalanobis distance as rescaling along covariance eigenvectors.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "knn_lof": [
+   {
+    "title": "Local Outlier Factor Lecture",
+    "channel": "The Outlier Hunters",
+    "url": "https://www.youtube.com/watch?v=LNMwjF5yrt8",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Full lecture on Local Outlier Factor with code. Small channel; content not reviewed.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "dbscan": [
@@ -497,71 +985,178 @@
     "duration": "",
     "year": "",
     "level": "intro",
-    "note": "Core/border/noise points, eps and minPts; density clusters plus noise points as outliers.",
-    "check": "Title and link seen in search results; channel NOT confirmed."
+    "note": "Core, border and noise points, eps and minPts. oEmbed confirms the StatQuest channel.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "one_class": [
+   {
+    "title": "One-Class SVM for Outlier Detection",
+    "channel": "MachineLearningInterview",
+    "url": "https://www.youtube.com/watch?v=vmE9ScCb2KY",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "One-class SVM for outlier detection without negative examples. Small channel; content not reviewed.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "isolation_forest": [
    {
-    "title": "Unsupervised Anomaly Detection with Isolation Forest",
-    "channel": "Elena Sharova (PyData London 2018)",
-    "url": "https://pyvideo.org/pydata-london-2018/unsupervised-anomaly-detection-with-isolation-forest.html",
+    "title": "Unsupervised Anomaly Detection with Isolation Forest - Elena Sharova",
+    "channel": "PyData",
+    "url": "https://www.youtube.com/watch?v=5p8B2Ikcw-k",
     "duration": "",
-    "year": "2018",
+    "year": "",
     "level": "intermediate",
-    "note": "Conference talk reviewing Isolation Forest (Liu et al. 2008) and how to define an anomaly in unsupervised settings. URL is the PyVideo recording page; YouTube ID not obtained.",
-    "check": "Title, speaker and link seen in search results; not opened."
+    "note": "PyData London 2018 talk: Isolation Forest (Liu et al. 2008) and how to define an anomaly.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Detecting anomalies using Isolation Trees: Practical Machine Learning",
+    "channel": "Gaurav Sen",
+    "url": "https://www.youtube.com/watch?v=smiu01pLosI",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Gaurav Sen: practical anomaly detection on metrics, ending with isolation trees.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "graph_basics": [
    {
-    "title": "Stanford CS224W: Machine Learning with Graphs (playlist)",
-    "channel": "Stanford CS224W, Jure Leskovec",
-    "url": "https://www.youtube.com/playlist?list=PLoROMvodv4rPLKxIpqhjhPgdQy7imNkDn",
+    "title": "Network Analysis. Lecture 5. Centrality measures.",
+    "channel": "Leonid Zhukov",
+    "url": "https://www.youtube.com/watch?v=DfV-pjRTlLg",
     "duration": "",
     "year": "",
     "level": "intermediate",
-    "note": "PLAYLIST, not a single video. Winter 2021 course; Lecture 2.x node features (degree, centrality) and Lecture 4.1 'PageRank' / 4.2 'PageRank: How to Solve?' (lecture titles per Class Central). Individual lecture URLs were NOT confirmed.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Leonid Zhukov network-analysis course: degree, closeness, betweenness, eigenvector centrality.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "PageRank: A Trillion Dollar Algorithm",
+    "channel": "Reducible",
+    "url": "https://www.youtube.com/watch?v=JGQe4kiPnrU",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Reducible: well-produced PageRank explainer (content not reviewed in detail).",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Closeness, betweenness, degree- and spectral centrality (NC 19-1)",
+    "channel": "Complexity Papers",
+    "url": "https://www.youtube.com/watch?v=fD_H-3Ht1gc",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Networks and Complexity course: closeness, betweenness, degree and spectral centrality.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "modularity_louvain": [
+   {
+    "title": "Lec 35: Modularity maximization algorithms for community detection",
+    "channel": "Samin Aref",
+    "url": "https://www.youtube.com/watch?v=JdH_EoaPRoQ",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Samin Aref lecture 35: modularity-maximization algorithms for community detection (Louvain coverage likely but not confirmed).",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Community Detection - 13 Modularity - Introduction",
+    "channel": "Computer Science with Rabeeh Abbasi",
+    "url": "https://www.youtube.com/watch?v=1tUW3I0G-5g",
+    "duration": "",
+    "year": "",
+    "level": "intro",
+    "note": "Introduction to modularity as a community quality score.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ],
   "spectral_clustering": [
+   {
+    "title": "Lecture 76 Spectral Clustering",
+    "channel": "Machine Learning- Balaraman Ravindran",
+    "url": "https://www.youtube.com/watch?v=AFsKM4spCPk",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Balaraman Ravindran (IIT Madras) lecture on spectral clustering.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Data Mining Lecture 21: Spectral Methods for Graph Partitioning",
+    "channel": "Debapriyo Majumdar",
+    "url": "https://www.youtube.com/watch?v=Er0DjMZ5kR0",
+    "duration": "",
+    "year": "",
+    "level": "intermediate",
+    "note": "Data-mining lecture: graph partitioning with the Laplacian's second eigenvector (Fiedler vector).",
+    "check": "Title and channel confirmed by YouTube."
+   },
    {
     "title": "Lectures on Clustering",
     "channel": "Ulrike von Luxburg (VideoLectures.net)",
     "url": "https://videolectures.net/bootcamp07_luxburg_clu",
     "duration": "",
-    "year": "2007",
+    "year": "",
     "level": "advanced",
-    "note": "2007 MPI Tübingen bootcamp; first two lectures on graph Laplacians and spectral clustering by the author of 'A Tutorial on Spectral Clustering'; last one on choosing the number of clusters. Not YouTube.",
-    "check": "Title, speaker and link seen in search results; not opened."
+    "note": "Not YouTube. MPI Tübingen bootcamp; first two lectures on graph Laplacians and spectral clustering by the author of 'A Tutorial on Spectral Clustering'.",
+    "check": "Not checked by YouTube: seen in search results only."
    }
   ],
   "sbm": [
    {
     "title": "Fundamental Limit of Community Detection in Stochastic Block Models",
-    "channel": "Emmanuel Abbe (Simons Institute talk)",
+    "channel": "Simons Institute for the Theory of Computing",
     "url": "https://www.youtube.com/watch?v=BD-iDsKK_6s",
     "duration": "",
-    "year": "2015",
+    "year": "",
     "level": "advanced",
-    "note": "Theory talk on detection/recovery thresholds in the SBM (Simons Institute, 'Information Theory, Learning and Big Data').",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Emmanuel Abbe: detection/recovery thresholds in the SBM.",
+    "check": "Title and channel confirmed by YouTube."
    },
    {
-    "title": "Dr. Tiago Peixoto",
-    "channel": "Tiago Peixoto (ISI Foundation talk)",
+    "title": "Dr. Tiago Peixoto | Efficient Bayesian inference of multi-scale network structures",
+    "channel": "INI Seminar Room 1",
     "url": "https://www.youtube.com/watch?v=fxmI4hagovo",
     "duration": "",
-    "year": "2016",
+    "year": "",
     "level": "advanced",
-    "note": "Talk 'Efficient Bayesian inference of multi-scale network structures' (nested/hierarchical SBM inference, graph-tool author). The YouTube title is just the speaker's name.",
-    "check": "Title and link seen in search results; not opened."
+    "note": "Tiago Peixoto (graph-tool author): Bayesian inference of nested/hierarchical SBMs.",
+    "check": "Title and channel confirmed by YouTube."
+   },
+   {
+    "title": "Community Detection in the Stochastic Block Model: Approximate Belief Propagation",
+    "channel": "Microsoft Research",
+    "url": "https://www.youtube.com/watch?v=nl_sftghluI",
+    "duration": "",
+    "year": "",
+    "level": "advanced",
+    "note": "Research talk: belief-propagation community detection in the SBM. Speaker not shown in oEmbed.",
+    "check": "Title and channel confirmed by YouTube."
+   }
+  ],
+  "kernel_kmeans": [
+   {
+    "title": "Lecture 10 on kernel methods: kernel K-means, spectral clustering, kernel CCA",
+    "channel": "Julien Mairal",
+    "url": "https://www.youtube.com/watch?v=7o2Hny_5lk0",
+    "duration": "",
+    "year": "",
+    "level": "advanced",
+    "note": "Julien Mairal kernel-methods lecture 10: kernel k-means, spectral clustering, kernel CCA.",
+    "check": "Title and channel confirmed by YouTube."
    }
   ]
  },
  "limits": [
-  "This cloud session could not reach most publishers, doi.org, arxiv.org, the ESL and ISLP book sites, scikit-learn.org, networkx.org or YouTube itself. So: no original papers yet (none could be checked), no ESL or ISLP page numbers, and videos are confirmed only from search results.",
-  "Concepts with no verified item show 'No verified item'. Nothing here was written from memory."
+  "Every book page, DOI, docs page and YouTube video listed here was checked in this session. What each paper covers (the short note) comes from general knowledge or its abstract, not from reading the paper.",
+  "Still missing: ESL and ISLP page numbers (their PDFs could not be downloaded), and the k-means++ (Arthur & Vassilvitskii, 2007), DBSCAN (Ester et al., 1996) and Ng–Jordan–Weiss (2002) papers (not verifiable from here). Durations and years of videos could not be read.",
+  "Where Crossref and other sources disagree on page numbers, the reference follows Crossref."
  ]
 }
