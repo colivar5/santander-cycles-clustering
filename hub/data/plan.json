@@ -1,5 +1,5 @@
 {
-  "status": "Proposal from Claude, not yet agreed. Dates assume the deadline is Thursday 26 November 2026 (decision D9, unconfirmed).",
+  "status": "Agreed 20 Nov 2026. Deadline Thursday 26 November 2026 (confirmed). Dates compressed on 20 Nov after a 3-day slip; the bonus phase is only if time allows.",
   "principles": [
     "Every data transformation is a committed script; raw files stay as downloaded.",
     "Any choice the results could steer (cleaning rules, features, number of clusters, thresholds) is written in notes/ and committed before the run it governs.",
@@ -8,75 +8,318 @@
     "The report is yours; Claude supplies code, numbers, figures and checks, never report text."
   ],
   "phases": [
-    {"n": 0, "name": "Set-up", "brief": "§1, §2.1", "dates": "16–17 Nov", "status": "in progress",
-     "steps": ["GitHub repository (done)", "File-selection rule (PR #1, open)", "Repository skeleton: README, requirements.txt, .gitignore, shared write function, run_all.py"],
-     "rules_first": ["notes/data-selection.md (written)"],
-     "you": ["Merge PR #1", "Answer D3–D8 (download source, layout, integrity check, run log, run_all, package versions)"],
-     "outputs": ["src/common.py, src/run_all.py", "README.md"]},
-    {"n": 1, "name": "Download and load", "brief": "§2.1", "dates": "17–18 Nov", "status": "not started",
-     "steps": ["Download the 26 selected files on your Mac (about 1.6 GB) with a manifest", "Loader: read every column as text, map columns by header name (column order changes between files), keep station ids as text", "Typed Parquet copy made by code", "Checks: row counts per file, unique trip id, the two overlap days (14 May, 15 June)", "Optional: station coordinates from TfL BikePoint (your Mac; blocked from the cloud)"],
-     "rules_first": [],
-     "you": ["Run the download and loader on your Mac and paste the output"],
-     "outputs": ["data/raw/ + MANIFEST.csv", "data/interim/trips_2025.parquet", "load summary JSON"]},
-    {"n": 2, "name": "Cleaning", "brief": "§2.2", "dates": "18 Nov", "status": "not started",
-     "steps": ["Write notes/cleaning-rules.md and commit it before cleaning", "Apply each rule in order and count what it removes", "Station id/name consistency table"],
-     "rules_first": ["What counts as a 2025 trip (start date? trips over midnight on 31 Dec)", "Missing stations", "Zero or negative durations", "Very long durations (keep, cap or drop?)", "Round trips (start = end): drop for the graph? keep for profiles?", "Duplicate trip ids from the overlap days", "Inconsistent station names or ids"],
-     "you": ["Approve the cleaning rules before they run"],
-     "outputs": ["cleaning counts table", "data/interim/trips_2025_clean.parquet"]},
-    {"n": 3, "name": "Description", "brief": "§2.3", "dates": "18–19 Nov", "status": "not started",
-     "steps": ["Total trips, active stations, start/end stations", "Trips per day, per station, per weekday and hour; duration distribution", "Figures in the agreed style (Okabe–Ito colours, units in labels)"],
-     "rules_first": ["Definition of an 'active' station"],
-     "you": ["Comment on the results in your report"],
-     "outputs": ["output/figures/describe_*", "describe summary JSON"]},
-    {"n": 4, "name": "Station profiles", "brief": "§3.1", "dates": "19 Nov", "status": "not started",
-     "steps": ["Global feature table (the 12 brief features)", "Hourly profile (24 departure + 24 arrival shares), weekday/weekend profile, monthly profile", "Per-station daily and weekly series"],
-     "rules_first": ["Morning and evening hour windows", "Minimum activity for a station to be profiled", "Counts vs shares, log transform, standardisation"],
-     "you": ["Approve the feature definitions"],
-     "outputs": ["data/interim/profiles_*.parquet"]},
-    {"n": 5, "name": "Dimension reduction", "brief": "§3.2", "course": "DR s2–64", "dates": "20 Nov", "status": "not started",
-     "steps": ["PCA on each profile: scree plot, loadings or correlation circle, station map", "One non-linear method from the course: Isomap or t-SNE (visualisation only, never clustered on, per DR s63)"],
-     "rules_first": ["Which profile(s) feed the main analysis", "Non-linear method and its parameters (k for Isomap; perplexity for t-SNE)"],
-     "you": ["Choose the non-linear method"],
-     "outputs": ["PCA tables and figures", "non-linear embedding figure"]},
-    {"n": 6, "name": "Clustering of profiles", "brief": "§3.3", "course": "CE s14–76", "dates": "20–21 Nov", "status": "not started",
-     "steps": ["k-means (k-means++, many restarts, seed 42)", "Gaussian mixture with BIC", "Optional Ward hierarchical clustering as a cross-check", "Cluster profiles and a map (needs station coordinates)"],
-     "rules_first": ["Rule for K (e.g. BIC for the GMM; silhouette or Calinski–Harabasz for k-means), fixed before running"],
-     "you": ["Approve the K rule"],
-     "outputs": ["cluster labels per station", "cluster profile and map figures"]},
-    {"n": 7, "name": "Anomalies", "brief": "§3.4", "course": "AN s15–78", "dates": "21 Nov", "status": "not started",
-     "steps": ["Robust Mahalanobis (MCD) on the first PCA components", "LOF and/or isolation forest", "Stations badly represented by their cluster (silhouette, distance to centroid)", "Interpretation table: error, special station, tourist, network edge, rare but plausible"],
-     "rules_first": ["Score thresholds or top-N to examine"],
-     "you": ["Interpret the anomalies in your report"],
-     "outputs": ["anomaly scores per station", "anomaly figures"]},
-    {"n": 8, "name": "Origin–destination graph", "brief": "§4.1", "course": "GR s35, s53–55 (thin)", "dates": "22 Nov", "status": "not started",
-     "steps": ["Directed weighted graph, weights = 2025 trips i → j", "Nodes, arcs, in/out-degree, strength and weight distributions", "Centrality (e.g. PageRank, betweenness) and in/out imbalance", "Optional: morning vs evening, weekday vs weekend graphs"],
-     "rules_first": ["Round trips (self-loops) in or out", "Which centrality measures"],
-     "you": [],
-     "outputs": ["edge list", "graph summary JSON and figures"]},
-    {"n": 9, "name": "SBM", "brief": "§4.2", "course": "not covered in the slides you shared", "dates": "22–23 Nov", "status": "blocked on D10",
-     "steps": ["Directed Poisson (count) SBM on the trip matrix", "Number of blocks by ICL, fixed as the rule before running", "Block sizes, block-to-block flow matrix, emitter/receiver roles", "Optional cross-check: Louvain or spectral clustering on the symmetrised graph"],
-     "rules_first": ["SBM variant (plain or degree-corrected) and the rule for the number of blocks"],
-     "you": ["D10: Python route for the SBM (after you check the course material)"],
-     "outputs": ["block labels per station", "block matrix figure"]},
-    {"n": 10, "name": "Comparison", "brief": "§4.3", "course": "GR s63–66", "dates": "23 Nov", "status": "not started",
-     "steps": ["Contingency table vector clusters × SBM blocks", "ARI and NMI", "Side-by-side maps"],
-     "rules_first": [],
-     "you": ["Discussion in your report"],
-     "outputs": ["comparison table and figures"]},
-    {"n": 11, "name": "Bonus (if time)", "brief": "§6", "dates": "23–24 Nov", "status": "optional",
-     "steps": ["Maps of clusters and blocks", "UK bank holidays and/or weather (outside data reduced by code)", "Temporal stability: SBM or communities per month, ARI between months"],
-     "rules_first": ["Which outside data, chosen before looking at results"],
-     "you": ["Pick which bonus, if any"],
-     "outputs": []},
-    {"n": 12, "name": "Packaging", "brief": "§5", "dates": "24–25 Nov", "status": "not started",
-     "steps": ["run_all end to end on your Mac; md5 of the main output in README", "Code cleanup (comments removed, checked by syntax-tree comparison)", "README followed literally from a clean copy in a fresh venv", "ZIP under 25 MB from committed files, tested by unzipping and running"],
-     "rules_first": [],
-     "you": ["Final run on your Mac", "Submission"],
-     "outputs": ["submission ZIP"]},
-    {"n": 13, "name": "Report", "brief": "§5", "dates": "throughout; finish 25–26 Nov", "status": "yours",
-     "steps": ["You write it. Claude supplies numbers, figures, fact checks and APA references on request."],
-     "rules_first": [],
-     "you": ["Everything"],
-     "outputs": ["report"]}
+    {
+      "n": 0,
+      "name": "Set-up",
+      "brief": "§1, §2.1",
+      "dates": "16–20 Nov",
+      "status": "in progress (PRs #1, #2 open)",
+      "steps": [
+        "GitHub repository (done)",
+        "File-selection rule (PR #1)",
+        "Skeleton and download stage (PR #2)"
+      ],
+      "rules_first": [
+        "notes/data-selection.md (written)"
+      ],
+      "you": [
+        "Merge PRs #1 and #2"
+      ],
+      "outputs": [
+        "src/common.py, src/run_all.py",
+        "README.md"
+      ]
+    },
+    {
+      "n": 1,
+      "name": "Download and load",
+      "brief": "§2.1",
+      "dates": "20–21 Nov",
+      "status": "not started",
+      "steps": [
+        "Download the 26 selected files on your Mac (about 1.6 GB) with a manifest",
+        "Loader: read every column as text, map columns by header name (column order changes between files), keep station ids as text",
+        "Typed Parquet copy made by code",
+        "Checks: row counts per file, unique trip id, the two overlap days (14 May, 15 June)",
+        "Optional: station coordinates from TfL BikePoint (your Mac; blocked from the cloud)"
+      ],
+      "rules_first": [],
+      "you": [
+        "Run the download and loader on your Mac and paste the output"
+      ],
+      "outputs": [
+        "data/raw/ + MANIFEST.csv",
+        "data/interim/trips_2025.parquet",
+        "load summary JSON"
+      ]
+    },
+    {
+      "n": 2,
+      "name": "Cleaning",
+      "brief": "§2.2",
+      "dates": "21 Nov",
+      "status": "not started",
+      "steps": [
+        "Write notes/cleaning-rules.md and commit it before cleaning",
+        "Apply each rule in order and count what it removes",
+        "Station id/name consistency table"
+      ],
+      "rules_first": [
+        "What counts as a 2025 trip (start date? trips over midnight on 31 Dec)",
+        "Missing stations",
+        "Zero or negative durations",
+        "Very long durations (keep, cap or drop?)",
+        "Round trips (start = end): drop for the graph? keep for profiles?",
+        "Duplicate trip ids from the overlap days",
+        "Inconsistent station names or ids"
+      ],
+      "you": [
+        "Approve the cleaning rules before they run"
+      ],
+      "outputs": [
+        "cleaning counts table",
+        "data/interim/trips_2025_clean.parquet"
+      ]
+    },
+    {
+      "n": 3,
+      "name": "Description",
+      "brief": "§2.3",
+      "dates": "21–22 Nov",
+      "status": "not started",
+      "steps": [
+        "Total trips, active stations, start/end stations",
+        "Trips per day, per station, per weekday and hour; duration distribution",
+        "Figures in the agreed style (Okabe–Ito colours, units in labels)"
+      ],
+      "rules_first": [
+        "Definition of an 'active' station"
+      ],
+      "you": [
+        "Comment on the results in your report"
+      ],
+      "outputs": [
+        "output/figures/describe_*",
+        "describe summary JSON"
+      ]
+    },
+    {
+      "n": 4,
+      "name": "Station profiles",
+      "brief": "§3.1",
+      "dates": "22 Nov",
+      "status": "not started",
+      "steps": [
+        "Global feature table (the 12 brief features)",
+        "Hourly profile (24 departure + 24 arrival shares), weekday/weekend profile, monthly profile",
+        "Per-station daily and weekly series"
+      ],
+      "rules_first": [
+        "Morning and evening hour windows",
+        "Minimum activity for a station to be profiled",
+        "Counts vs shares, log transform, standardisation"
+      ],
+      "you": [
+        "Approve the feature definitions"
+      ],
+      "outputs": [
+        "data/interim/profiles_*.parquet"
+      ]
+    },
+    {
+      "n": 5,
+      "name": "Dimension reduction",
+      "brief": "§3.2",
+      "course": "DR s2–64",
+      "dates": "22 Nov",
+      "status": "not started",
+      "steps": [
+        "PCA on each profile: scree plot, loadings or correlation circle, station map",
+        "One non-linear method from the course: Isomap or t-SNE (visualisation only, never clustered on, per DR s63)"
+      ],
+      "rules_first": [
+        "Which profile(s) feed the main analysis",
+        "Non-linear method and its parameters (k for Isomap; perplexity for t-SNE)"
+      ],
+      "you": [
+        "Choose the non-linear method"
+      ],
+      "outputs": [
+        "PCA tables and figures",
+        "non-linear embedding figure"
+      ]
+    },
+    {
+      "n": 6,
+      "name": "Clustering of profiles",
+      "brief": "§3.3",
+      "course": "CE s14–76",
+      "dates": "23 Nov",
+      "status": "not started",
+      "steps": [
+        "k-means (k-means++, many restarts, seed 42)",
+        "Gaussian mixture with BIC",
+        "Optional Ward hierarchical clustering as a cross-check",
+        "Cluster profiles and a map (needs station coordinates)"
+      ],
+      "rules_first": [
+        "Rule for K (e.g. BIC for the GMM; silhouette or Calinski–Harabasz for k-means), fixed before running"
+      ],
+      "you": [
+        "Approve the K rule"
+      ],
+      "outputs": [
+        "cluster labels per station",
+        "cluster profile and map figures"
+      ]
+    },
+    {
+      "n": 7,
+      "name": "Anomalies",
+      "brief": "§3.4",
+      "course": "AN s15–78",
+      "dates": "23 Nov",
+      "status": "not started",
+      "steps": [
+        "Robust Mahalanobis (MCD) on the first PCA components",
+        "LOF and/or isolation forest",
+        "Stations badly represented by their cluster (silhouette, distance to centroid)",
+        "Interpretation table: error, special station, tourist, network edge, rare but plausible"
+      ],
+      "rules_first": [
+        "Score thresholds or top-N to examine"
+      ],
+      "you": [
+        "Interpret the anomalies in your report"
+      ],
+      "outputs": [
+        "anomaly scores per station",
+        "anomaly figures"
+      ]
+    },
+    {
+      "n": 8,
+      "name": "Origin–destination graph",
+      "brief": "§4.1",
+      "course": "GR s35, s53–55 (thin)",
+      "dates": "24 Nov",
+      "status": "not started",
+      "steps": [
+        "Directed weighted graph, weights = 2025 trips i → j",
+        "Nodes, arcs, in/out-degree, strength and weight distributions",
+        "Centrality (e.g. PageRank, betweenness) and in/out imbalance",
+        "Optional: morning vs evening, weekday vs weekend graphs"
+      ],
+      "rules_first": [
+        "Round trips (self-loops) in or out",
+        "Which centrality measures"
+      ],
+      "you": [],
+      "outputs": [
+        "edge list",
+        "graph summary JSON and figures"
+      ]
+    },
+    {
+      "n": 9,
+      "name": "SBM",
+      "brief": "§4.2",
+      "course": "not covered in the slides you shared",
+      "dates": "24 Nov",
+      "status": "blocked on D10",
+      "steps": [
+        "Directed Poisson (count) SBM on the trip matrix",
+        "Number of blocks by ICL, fixed as the rule before running",
+        "Block sizes, block-to-block flow matrix, emitter/receiver roles",
+        "Optional cross-check: Louvain or spectral clustering on the symmetrised graph"
+      ],
+      "rules_first": [
+        "SBM variant (plain or degree-corrected) and the rule for the number of blocks"
+      ],
+      "you": [
+        "D10: Python route for the SBM, needed by 23 Nov (after you check the course material)"
+      ],
+      "outputs": [
+        "block labels per station",
+        "block matrix figure"
+      ]
+    },
+    {
+      "n": 10,
+      "name": "Comparison",
+      "brief": "§4.3",
+      "course": "GR s63–66",
+      "dates": "24–25 Nov",
+      "status": "not started",
+      "steps": [
+        "Contingency table vector clusters × SBM blocks",
+        "ARI and NMI",
+        "Side-by-side maps"
+      ],
+      "rules_first": [],
+      "you": [
+        "Discussion in your report"
+      ],
+      "outputs": [
+        "comparison table and figures"
+      ]
+    },
+    {
+      "n": 11,
+      "name": "Bonus (if time)",
+      "brief": "§6",
+      "dates": "25 Nov, if time",
+      "status": "optional",
+      "steps": [
+        "Maps of clusters and blocks",
+        "UK bank holidays and/or weather (outside data reduced by code)",
+        "Temporal stability: SBM or communities per month, ARI between months"
+      ],
+      "rules_first": [
+        "Which outside data, chosen before looking at results"
+      ],
+      "you": [
+        "Pick which bonus, if any"
+      ],
+      "outputs": []
+    },
+    {
+      "n": 12,
+      "name": "Packaging",
+      "brief": "§5",
+      "dates": "25 Nov",
+      "status": "not started",
+      "steps": [
+        "run_all end to end on your Mac; md5 of the main output in README",
+        "Code cleanup (comments removed, checked by syntax-tree comparison)",
+        "README followed literally from a clean copy in a fresh venv",
+        "ZIP under 25 MB from committed files, tested by unzipping and running"
+      ],
+      "rules_first": [],
+      "you": [
+        "Final run on your Mac",
+        "Submission"
+      ],
+      "outputs": [
+        "submission ZIP"
+      ]
+    },
+    {
+      "n": 13,
+      "name": "Report",
+      "brief": "§5",
+      "dates": "throughout; finish 26 Nov",
+      "status": "yours",
+      "steps": [
+        "You write it. Claude supplies numbers, figures, fact checks and APA references on request."
+      ],
+      "rules_first": [],
+      "you": [
+        "Everything"
+      ],
+      "outputs": [
+        "report"
+      ]
+    }
   ]
 }
