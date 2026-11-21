@@ -1,0 +1,22 @@
+# Python
+env_311/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Raw trip files are large: kept on disk exactly as downloaded, never in git.
+# The manifest and the S3 listing in data/raw/ are committed.
+data/raw/tfl-usage-stats/
+data/raw/**/.part-*
+
+# Derived data, rebuilt by code
+data/interim/
+
+# Run logs of run_all.py
+output/run_all/
+
+# Temporary files of the never-overwrite writer
+.tmp-*
+
+# macOS
+.DS_Store
