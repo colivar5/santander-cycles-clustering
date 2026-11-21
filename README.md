@@ -6,7 +6,13 @@ Status: set-up. This README grows with each stage.
 
 ## Set-up
 
-Python 3.11. From the repository folder:
+Python 3.11. From the repository folder, first check that no `env_311` folder exists, because `python -m venv` on an existing folder rewrites it without asking. This should say "No such file or directory":
+
+```bash
+ls env_311
+```
+
+Then create the environment and install the pinned packages:
 
 ```bash
 python3.11 -m venv env_311
@@ -23,6 +29,7 @@ Each stage is a script that runs on its own, or all in order with `run_all.py`.
 | Stage | Command | What it does | Writes |
 |---|---|---|---|
 | download | `env_311/bin/python src/download.py` | Downloads the TfL trip files chosen by `notes/data-selection.md` (about 1.6 GB), checks each against its size and S3's CRC64-NVME checksum, records a manifest. Files already present and matching are skipped. | `data/raw/tfl-usage-stats/*.csv` (not in git), `data/raw/MANIFEST.csv`, `data/raw/usage-stats-listing.xml`, `output/runs/download/<UTC>/run.json`, a row in `logs/runs.csv` |
+| load | `env_311/bin/python src/load.py` | Checks each downloaded file against its manifest SHA-256, reads every field as text, maps columns by header name (their order differs between files), checks the row count against the file's line count, and types the columns: trip id and duration (ms) as integers, start and end times as published (London clock time, no time zone), station numbers as text with leading zeros. Keeps every row; values that do not parse become null and are listed. | `data/interim/trips_loaded.parquet` (not in git); in `output/runs/load/<UTC>/`: `per_file.csv`, `header_layouts.csv`, `daily_counts.csv`, `cross_file_ids.csv`, `parse_failures.csv`, `run.json`; a row in `logs/runs.csv` |
 
 All stages in order:
 

@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import OUTPUT, ROOT, rel, utc_stamp  # noqa: E402
 
-STAGES = ["download"]
+STAGES = ["download", "load"]
 
 
 def main(argv: list[str] | None = None) -> int:
