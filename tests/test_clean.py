@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import clean  # noqa: E402
@@ -34,24 +35,24 @@ def test_rules_in_order_and_waterfall():
         trip(8),
         trip(9, bike="b2"),
     ])
-    kept, excluded, wf = clean.apply_rules(df)
+    kept, excluded, wf, _ = clean.apply_rules(df, frozenset(), frozenset())
     assert kept["trip_id"].tolist() == [1, 3, 7, 9]
     assert dict(zip(excluded["trip_id"], excluded["rule"])) == {
         2: "R1_start_not_in_2025", 4: "R2_missing_station", 5: "R3_duration_not_positive",
         6: "R3_duration_not_positive", 8: "R7_duplicate_of_lower_trip_id"}
-    assert wf["rows_removed"].tolist() == [0, 1, 1, 2, 1]
+    assert wf["rows_removed"].tolist() == [0, 1, 1, 2, 1, 0, 0]
     assert wf["rows_left"].iloc[-1] == 4
     assert kept.set_index("trip_id")["is_round_trip"].to_dict() == {1: False, 3: False, 7: True, 9: False}
 
 
 def test_duplicate_keeps_lower_trip_id_whatever_the_row_order():
-    kept, excluded, _ = clean.apply_rules(frame([trip(20), trip(10)]))
+    kept, excluded, _, _ = clean.apply_rules(frame([trip(20), trip(10)]), frozenset(), frozenset())
     assert kept["trip_id"].tolist() == [10]
     assert excluded["trip_id"].tolist() == [20]
 
 
 def test_long_trips_are_kept():
-    kept, _, _ = clean.apply_rules(frame([trip(1, end="2025-06-03 10:00", ms=2 * 86_400_000)]))
+    kept, _, _, _ = clean.apply_rules(frame([trip(1, end="2025-06-03 10:00", ms=2 * 86_400_000)]), frozenset(), frozenset())
     assert kept["trip_id"].tolist() == [1]
 
 
@@ -82,3 +83,35 @@ def test_station_names_label_and_conflicts():
     assert set(a["label"]) == {"A"} and a["names_for_id"].tolist() == [2, 2]
     b = t[t["station_name"] == "B"]
     assert sorted(b["station_id"]) == ["002", "003"] and b["ids_for_name"].tolist() == [2, 2]
+
+
+def test_r9_merges_old_ids_and_r10_removes_workshops():
+    df = frame([
+        trip(1, s="123456", sname="Elm Road", e="999999", ename="Oak Street"),
+        trip(2, s="123456", sname="Elm Road", e="999999", ename="Oak Street", bike="b2"),
+        trip(3, s="123456444", sname="Elm Road_OLD", e="999999", ename="Oak Street"),
+        trip(4, s="123456444", sname="Elm Road_OLD", e="123456", ename="Elm Road"),
+        trip(5, s="5555554444", sname="Not Its Label_OLD", e="999999", ename="Oak Street"),
+        trip(6, s="010626", sname="Mechanical Workshop Penton", e="999999", ename="Oak Street"),
+        trip(7, s="999999", sname="Oak Street", e="010626", ename="Mechanical Workshop Penton"),
+        trip(8, s="555555", sname="Ash Lane", e="999999", ename="Oak Street"),
+    ])
+    kept, excluded, wf, merges = clean.apply_rules(df, frozenset({"123456444"}), frozenset({"010626"}))
+    k = kept.set_index("trip_id")
+    assert k.loc[3, "start_station_id"] == "123456" and k.loc[3, "start_station_id_published"] == "123456444"
+    assert k.loc[5, "start_station_id"] == "5555554444"
+    assert bool(k.loc[4, "is_round_trip"]) and not bool(k.loc[3, "is_round_trip"])
+    assert merges.to_dict("records") == [{"published_id": "123456444", "merged_into": "123456",
+                                          "departures": 2, "arrivals": 0}]
+    assert dict(zip(excluded["trip_id"], excluded["rule"])) == {6: "R10_workshop", 7: "R10_workshop"}
+    assert wf.set_index("step")["rows_removed"].to_dict()["R9_merge_old_ids"] == 0
+    assert wf.set_index("step")["rows_removed"].to_dict()["R10_workshop"] == 2
+
+
+def test_r9_and_r10_stop_when_the_ids_found_differ():
+    df = frame([trip(1, s="123456", sname="Elm Road"), trip(2, s="123456444", sname="Elm Road_OLD"),
+                trip(3, s="010626", sname="Mechanical Workshop Penton")])
+    with pytest.raises(SystemExit):
+        clean.apply_rules(df, frozenset(), frozenset({"010626"}))
+    with pytest.raises(SystemExit):
+        clean.apply_rules(df, frozenset({"123456444"}), frozenset())
