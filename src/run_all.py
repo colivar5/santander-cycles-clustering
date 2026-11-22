@@ -4,6 +4,10 @@
     python src/run_all.py --from <stage>   # from this stage onwards
 
 Output of each run goes to the terminal and to ``output/run_all/<UTC stamp>.log``.
+
+Every stage runs on this script's Python (env_311) except ``sbm``, which runs on
+the Python that has graph-tool (decision D23): ``SBM_PYTHON`` below, or the
+``SBM_PYTHON`` environment variable if set.
 """
 from __future__ import annotations
 
@@ -22,7 +26,14 @@ STAGES = {
     "load": [],
     "clean": [],
     "bikepoint": ["--file", BIKEPOINT_SNAPSHOT],
+    "graph": [],
+    "sbm": [],
 }
+SBM_PYTHON = "/opt/homebrew/opt/python@3.15/bin/python3.15"
+
+
+def interpreter(stage: str) -> str:
+    return os.environ.get("SBM_PYTHON", SBM_PYTHON) if stage == "sbm" else sys.executable
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -40,7 +51,7 @@ def main(argv: list[str] | None = None) -> int:
             header = f"=== {stage} ===\n"
             print(header, end="")
             log.write(header)
-            proc = subprocess.Popen([sys.executable, str(ROOT / "src" / f"{stage}.py"), *STAGES[stage]], cwd=ROOT,
+            proc = subprocess.Popen([interpreter(stage), str(ROOT / "src" / f"{stage}.py"), *STAGES[stage]], cwd=ROOT,
                                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                                     env={**os.environ, "PYTHONUNBUFFERED": "1"})
             for line in proc.stdout:
