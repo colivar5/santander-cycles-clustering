@@ -8,6 +8,10 @@ is kept as its own file, exactly as received, and recorded in
     python src/bikepoint.py                 # fetch now, save, parse, match
     python src/bikepoint.py --file PATH     # parse and match a saved snapshot, no fetch
 
+``--file`` refuses a snapshot that ``SOURCES.csv`` does not record, or whose
+bytes no longer match the recorded SHA-256. ``run_all.py`` uses ``--file``
+on the committed snapshot and never fetches.
+
 Writes ``data/external/bikepoint/BikePoint_<UTC>.json`` and a row in
 ``data/external/SOURCES.csv`` (fetch only), ``data/interim/bikepoint_stations.csv``
 and, in ``output/runs/bikepoint/<UTC>/``: ``match.csv``, ``run.json``.
@@ -67,6 +71,18 @@ def record_source(path: Path, retrieved: str) -> None:
                     "used_for": "station names and coordinates (brief §2.1, optional)"})
 
 
+def check_recorded(path: Path, sources: Path = SOURCES) -> None:
+    """A saved snapshot is read only if SOURCES.csv records it and its bytes still have the recorded SHA-256."""
+    rows = []
+    if sources.exists():
+        with open(sources, newline="") as f:
+            rows = [r for r in csv.DictReader(f) if r["file"] == rel(path)]
+    if not rows:
+        raise SystemExit(f"{rel(path)} is not recorded in {rel(sources)}")
+    if sha256_file(path) != rows[-1]["sha256"]:
+        raise SystemExit(f"{rel(path)} does not match the SHA-256 recorded in {rel(sources)}")
+
+
 def parse(raw: bytes) -> pd.DataFrame:
     """One row per BikePoint place: id, name, lat, lon, then every additional property as a column."""
     places = json.loads(raw)
@@ -113,6 +129,7 @@ def main(argv: list[str] | None = None) -> int:
     run = Run("bikepoint")
     if args.file:
         snapshot = args.file
+        check_recorded(snapshot)
         raw = snapshot.read_bytes()
     else:
         retrieved = utc_iso()

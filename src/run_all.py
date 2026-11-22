@@ -16,14 +16,21 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import OUTPUT, ROOT, rel, utc_stamp  # noqa: E402
 
-STAGES = ["download", "load", "clean"]
+BIKEPOINT_SNAPSHOT = "data/external/bikepoint/BikePoint_20261122T125026Z.json"
+STAGES = {
+    "download": [],
+    "load": [],
+    "clean": [],
+    "bikepoint": ["--file", BIKEPOINT_SNAPSHOT],
+}
 
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--from", dest="start", choices=STAGES, default=STAGES[0])
+    names = list(STAGES)
+    ap.add_argument("--from", dest="start", choices=names, default=names[0])
     args = ap.parse_args(argv)
-    stages = STAGES[STAGES.index(args.start):]
+    stages = names[names.index(args.start):]
 
     log_dir = OUTPUT / "run_all"
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -33,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
             header = f"=== {stage} ===\n"
             print(header, end="")
             log.write(header)
-            proc = subprocess.Popen([sys.executable, str(ROOT / "src" / f"{stage}.py")], cwd=ROOT,
+            proc = subprocess.Popen([sys.executable, str(ROOT / "src" / f"{stage}.py"), *STAGES[stage]], cwd=ROOT,
                                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                                     env={**os.environ, "PYTHONUNBUFFERED": "1"})
             for line in proc.stdout:

@@ -34,6 +34,20 @@ def test_parse_refuses_missing_or_repeated_terminal():
         bikepoint.parse(b"{}")
 
 
+def test_saved_snapshot_must_be_recorded_with_its_sha(tmp_path):
+    snap = tmp_path / "BikePoint_x.json"
+    snap.write_bytes(b"[]")
+    sources = tmp_path / "SOURCES.csv"
+    with pytest.raises(SystemExit):
+        bikepoint.check_recorded(snap, sources)
+    sources.write_text("file,url,retrieved_at_utc,size_bytes,sha256,used_for\n"
+                       f"{snap},u,t,2,{bikepoint.sha256_file(snap)},x\n")
+    bikepoint.check_recorded(snap, sources)
+    snap.write_bytes(b"[ ]")
+    with pytest.raises(SystemExit):
+        bikepoint.check_recorded(snap, sources)
+
+
 def test_match_is_exact_text():
     bp = bikepoint.parse(json.dumps([place(1, "001001", "A")]).encode())
     st = pd.DataFrame({"station_id": ["001001", "1001", "200025444"], "trip_ends": [5, 1, 2]})
