@@ -1,6 +1,6 @@
 # Graph and SBM
 
-**Status: proposed 2026-11-22, not approved.** Written before `src/graph.py` or `src/sbm.py` exists and before any look at the graph: no edge count, degree, weight distribution or partition has been computed. Once approved, the choices are fixed for the graph and SBM runs; a change after that goes in a new commit that says why.
+**Status: approved 2026-11-22 (G1–G6, G8 as proposed; G9 (a)); G7's extra fixed-K fit still open.** Written before `src/graph.py` or `src/sbm.py` exists and before any look at the graph: no edge count, degree, weight distribution or partition has been computed. Once approved, the choices are fixed for the graph and SBM runs; a change after that goes in a new commit that says why.
 
 What is known so far, all from the clean stage (`output/runs/clean/20261122T175304Z/` in the cloud, `20261122T175858Z` on your Mac, same SHA-256): 9,067,251 trips kept, 805 station ids after R9, 305,702 round trips (3.37% of trips).
 
@@ -18,6 +18,8 @@ Each choice says what it does, then **Proposed** and **Other options**. Items ma
 
 ### G1. Nodes
 
+**Decided: as proposed.**
+
 **Proposed:** every station id in `trips_clean` after R9 and R10: 805 nodes. Every one has at least one trip, so none is isolated.
 
 **Other options:** drop stations with fewer than N trips in 2025. I have no source for N. The degree-corrected SBM (G4) is meant to handle stations with few trips, which is a reason not to need a threshold.
@@ -27,6 +29,8 @@ Each choice says what it does, then **Proposed** and **Other options**. Items ma
 Directed: i → j and j → i are different edges. w_ij is the number of trips in `trips_clean` that start at i and end at j, using the merged ids, as §4.1 says. Fixed by the brief; no choice.
 
 ### G3. Self-loops (round trips)
+
+**Decided: (b), as proposed.**
 
 The edge list keeps w_ii for every station, so the round trips stay in the data whatever is chosen here.
 
@@ -40,6 +44,8 @@ Why: a self-loop says nothing about which stations a station is linked to, and r
 
 ### G4. Which SBM
 
+**Decided: as proposed.**
+
 **Proposed:** fit both the standard SBM (Holland, Laskey & Leinhardt, 1983) and the degree-corrected SBM (Karrer & Newman, 2011). Keep the one with the **lower description length** as the main result and report both values.
 
 Why: without degree correction, an SBM tends to put stations in blocks by how busy they are rather than by where their trips go (Karrer & Newman, 2011). The description length is graph-tool's own criterion for choosing between models fitted to the same graph (Peixoto, 2014, 2017). Fixing the rule now means the choice is not made by looking at the blocks.
@@ -50,6 +56,8 @@ Why: without degree correction, an SBM tends to put stations in blocks by how bu
 
 ### G5. How the trip counts enter the model
 
+**Decided: (a), as proposed.**
+
 **Proposed:** (a) each trip is one edge. The graph is a multigraph in which i → j has w_ij parallel edges. In graph-tool this means the edge list with w_ij passed as the edge multiplicity (`eweight`), not 9 million separate edges. This models the count itself, which is what §4.1's weight is.
 
 **Other options:**
@@ -58,6 +66,8 @@ Why: without degree correction, an SBM tends to put stations in blocks by how bu
 
 ### G6. Flat or nested
 
+**Decided: nested, as proposed.**
+
 **Proposed:** nested (Peixoto, 2014). The model fits a hierarchy of blocks: stations into blocks, blocks into bigger blocks, and so on. The lowest level is the main partition. Higher levels give coarser partitions that can be shown without choosing K by hand.
 
 **Other options:**
@@ -65,11 +75,15 @@ Why: without degree correction, an SBM tends to put stations in blocks by how bu
 
 ### G7. Number of blocks K
 
+**Decided: K by minimum description length, as proposed. The extra fixed-K fit is still open.**
+
 **Proposed:** K is not fixed; it is the K that minimises the description length (lowest level of the nested model, or the flat model's K).
 
 **You decide:** whether to also fit the SBM with K fixed to the number of clusters chosen in §3, so the §4.3 comparison is between partitions of the same size. That K does not exist yet. If yes, it is fixed when the §3 clustering is decided, before the SBM runs.
 
 ### G8. Randomness and runs
+
+**Decided: as proposed.**
 
 The fit is a stochastic search; different seeds can give different partitions.
 
@@ -88,7 +102,8 @@ Reproducibility: repeat runs on your Mac with the same seeds should give the sam
 
 The central question asks about « l'évolution du réseau ».
 
-**You decide:**
+**Decided: (a).**
+
 - (a) One graph for all of 2025. Evolution is left to §3 (profiles by month or season) and §2.3.
 - (b) The 2025 graph plus graphs for periods decided now (for example each month, or weekdays against weekends), each fitted the same way. Comparing their partitions adds a run per period.
 - (c) A layered SBM with periods as layers (Peixoto, 2015). This is the most direct model of change over time, and the most work.
