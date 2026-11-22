@@ -2,7 +2,7 @@
 
 **Status: approved 2026-11-22.** R1–R3 and R6–R8 as proposed; R4 option (c); R5 flag only. Written 2026-11-22, before any cleaning code exists and before any look at the distributions of durations, trips per station or trips per day. The rules are fixed for the cleaning run; a change after this goes in a new commit that says why.
 
-**Amendment, 2026-11-22: R9 proposed, not yet approved.** Decision D19 (b): merge the 15 `_OLD` ids into their 6-digit ids. R9 is written after the first clean run and the BikePoint match, so unlike R1–R8 it is written after looking; it says what was seen.
+**Amendment, approved 2026-11-22: R9 and R10.** R9 (decision D19 (b)) merges the 15 `_OLD` ids into their 6-digit ids. R10 removes the trips that start or end at a mechanical workshop. Both were written after the first clean run and the BikePoint match, so unlike R1–R8 they were written after looking; each says what was seen.
 
 What has been seen of the data so far, all from the load stage (`output/runs/load/20261121T231139Z/`, your Mac): 26 files and 9,540,931 rows, of which 9,068,241 are in the 2025 files 411–434. There are no duplicate trip ids, either within a file or across files, and no value fails to parse. 184 rows have an empty end time, end station and duration. By start time, files 411–434 run from 2025-01-01 00:00 to 2025-12-31 23:59; file 410 is all 2024 and file 435 all 2026. Seen in the first lines of file 421: end station id `200025444` named "London Fields, Hackney Central_OLD".
 
@@ -18,7 +18,7 @@ Brief §4.1: « le poids w_ij est le nombre de trajets observés de i vers j en 
 
 ## Rules
 
-The rules are applied in this order. A row removed by one rule is counted under that rule only.
+The rules are applied in this order: R1, R2, R3, R7, R9, R10, then R5's flag on the trips left. R4, R6 and R8 remove nothing. A row removed by one rule is counted under that rule only.
 
 Each rule says what it does, then the choice proposed (**Proposed**) and the other options (**Other options**). The items marked **You decide** are the ones I am not proposing a value for.
 
@@ -92,6 +92,8 @@ The station key is the station id, kept as text with its leading zeros.
 
 ### R9. `_OLD` station ids (amendment, D19 (b))
 
+**Decided: merge, as proposed.**
+
 **What was seen** (clean run `output/runs/clean/20261122T124952Z/`, BikePoint match `output/runs/bikepoint/20261122T125025Z/`):
 - 15 ids are a 6-digit id followed by `444` or `4444`. Every name they carry is the 6-digit id's label followed by `_OLD`.
 - BikePoint lists none of the 15. It lists 14 of the 6-digit ids; 001127 is missing.
@@ -107,6 +109,17 @@ The station key is the station id, kept as text with its leading zeros.
 
 **Other options:**
 - (a) Keep the 15 ids as separate stations (R8 as first approved).
+
+### R10. Mechanical workshops (amendment)
+
+**Decided: remove.**
+
+**What was seen:** two station ids are named "Mechanical Workshop Penton" (010626, 607 trip starts and ends in the first clean run) and "Mechanical Workshop Clapham" (022168, 199). They are not stations; BikePoint lists neither.
+
+**Rule:**
+- A trip is removed when its start or end station carries a name that contains `Mechanical Workshop`.
+- The cleaning run stops with an error if the ids with such a name are not exactly 010626 and 022168.
+- R10 runs after R9. Its waterfall row counts the trips removed. A trip that starts and ends at a workshop is counted once.
 
 ## What the cleaning stage writes
 
