@@ -2,6 +2,8 @@
 
 **Status: approved 2026-11-22.** R1–R3 and R6–R8 as proposed; R4 option (c); R5 flag only. Written 2026-11-22, before any cleaning code exists and before any look at the distributions of durations, trips per station or trips per day. The rules are fixed for the cleaning run; a change after this goes in a new commit that says why.
 
+**Amendment, 2026-11-22: R9 proposed, not yet approved.** Decision D19 (b): merge the 15 `_OLD` ids into their 6-digit ids. R9 is written after the first clean run and the BikePoint match, so unlike R1–R8 it is written after looking; it says what was seen.
+
 What has been seen of the data so far, all from the load stage (`output/runs/load/20261121T231139Z/`, your Mac): 26 files and 9,540,931 rows, of which 9,068,241 are in the 2025 files 411–434. There are no duplicate trip ids, either within a file or across files, and no value fails to parse. 184 rows have an empty end time, end station and duration. By start time, files 411–434 run from 2025-01-01 00:00 to 2025-12-31 23:59; file 410 is all 2024 and file 435 all 2026. Seen in the first lines of file 421: end station id `200025444` named "London Fields, Hackney Central_OLD".
 
 ## What the brief asks
@@ -83,17 +85,36 @@ Rows that share start station, start time and end station but have different bik
 The station key is the station id, kept as text with its leading zeros.
 
 **Proposed:**
-- No station is merged with another. Ids are kept as they are, including 9-digit ids and names ending `_OLD`. Two ids are not shown to be the same place without station locations, which are outside data (BikePoint, brief §2.1 optional).
+- No station is merged with another, except under R9. Ids are kept as they are, including 9-digit ids and names ending `_OLD`. Two ids are not shown to be the same place without station locations, which are outside data (BikePoint, brief §2.1 optional).
 - Every id with more than one name, and every name with more than one id, is listed in `station_names.csv` with trip counts.
 - Each id is labelled by its most frequent name, with ties broken alphabetically.
 - If that list shows a case that clearly needs a rule, the rule is proposed then, before any profile is computed.
 
+### R9. `_OLD` station ids (amendment, D19 (b))
+
+**What was seen** (clean run `output/runs/clean/20261122T124952Z/`, BikePoint match `output/runs/bikepoint/20261122T125025Z/`):
+- 15 ids are a 6-digit id followed by `444` or `4444`. Every name they carry is the 6-digit id's label followed by `_OLD`.
+- BikePoint lists none of the 15. It lists 14 of the 6-digit ids; 001127 is missing.
+- On every day of 2025, at most one of the two ids in each pair has trips, except on at most 2 days per pair.
+
+**Proposed:**
+- An id is merged into the 6-digit id made of its first 6 characters when all of these hold: it is longer than 6 characters; every character after the first 6 is `4`; the 6-digit id exists in the trips; every name the long id carries is the 6-digit id's label followed by `_OLD`.
+- The cleaning run stops with an error if the ids that meet these conditions are not exactly these 15: 001059444, 001085444, 0011274444, 001190444, 001219444, 200025444, 200083444, 200134444, 200136444, 200141444, 2001454444, 200191444, 200230444, 300032444, 300241444.
+- Station names are not changed. The published ids are kept in two new columns, `start_station_id_published` and `end_station_id_published`.
+- R9 runs after R7, so R7 compares the published ids. `is_round_trip` is computed after R9, on the merged ids. A trip from an `_OLD` id to its own 6-digit id therefore becomes a round trip. How many there are is not verified.
+- No trip is removed by R9. Its waterfall row shows 0 removed.
+- R8 then runs on the merged ids, so `station_names.csv` lists each 6-digit id with both of its names.
+
+**Other options:**
+- (a) Keep the 15 ids as separate stations (R8 as first approved).
+
 ## What the cleaning stage writes
 
-- `data/interim/trips_clean.parquet`: the trips kept, with the load columns plus `is_round_trip`.
+- `data/interim/trips_clean.parquet`: the trips kept, with the load columns plus `is_round_trip` and, under R9, `start_station_id_published` and `end_station_id_published`.
 - `data/interim/trips_excluded.parquet`: the trips removed, with the rule that removed each.
 - In `output/runs/clean/<UTC>/`:
   - `waterfall.csv`: for each rule, the rows removed and the rows left.
   - `station_names.csv`.
+  - `station_merges.csv` (R9): each merged id, the id it was merged into, and its trip starts and ends.
   - `duration_gaps.csv`: the R6 review file.
   - `run.json`.
