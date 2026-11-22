@@ -1,6 +1,6 @@
 # Graph and SBM
 
-**Status: approved 2026-11-22 (G1–G6, G8 as proposed; G9 (a)); G7's extra fixed-K fit still open.** Written before `src/graph.py` or `src/sbm.py` exists and before any look at the graph: no edge count, degree, weight distribution or partition has been computed. Once approved, the choices are fixed for the graph and SBM runs; a change after that goes in a new commit that says why.
+**Status: approved 2026-11-22.** G1–G8 as proposed, G7 with the extra fixed-K fit, G9 (a). Written before `src/graph.py` or `src/sbm.py` exists and before any look at the graph: no edge count, degree, weight distribution or partition has been computed. Once approved, the choices are fixed for the graph and SBM runs; a change after that goes in a new commit that says why.
 
 What is known so far, all from the clean stage (`output/runs/clean/20261122T175304Z/` in the cloud, `20261122T175858Z` on your Mac, same SHA-256): 9,067,251 trips kept, 805 station ids after R9, 305,702 round trips (3.37% of trips).
 
@@ -75,11 +75,11 @@ Why: without degree correction, an SBM tends to put stations in blocks by how bu
 
 ### G7. Number of blocks K
 
-**Decided: K by minimum description length, as proposed. The extra fixed-K fit is still open.**
+**Decided: K by minimum description length for the main result, as proposed; plus the extra fixed-K fit.** The extra fit is a flat SBM with exactly K blocks, K being the number of clusters chosen in §3, using the model G4 keeps and the G8 procedure. It is used only for the §4.3 comparison. It runs after §3's K is decided; that K is written here before the fit runs.
 
 **Proposed:** K is not fixed; it is the K that minimises the description length (lowest level of the nested model, or the flat model's K).
 
-**You decide:** whether to also fit the SBM with K fixed to the number of clusters chosen in §3, so the §4.3 comparison is between partitions of the same size. That K does not exist yet. If yes, it is fixed when the §3 clustering is decided, before the SBM runs.
+**Was put as:** whether to also fit the SBM with K fixed to the number of clusters chosen in §3, so the §4.3 comparison is between partitions of the same size. That K does not exist yet. If yes, it is fixed when the §3 clustering is decided, before the SBM runs.
 
 ### G8. Randomness and runs
 
