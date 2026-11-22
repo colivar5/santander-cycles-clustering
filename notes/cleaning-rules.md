@@ -1,6 +1,6 @@
 # Cleaning rules
 
-**Status: DRAFT, not approved.** Written 2026-11-22, before any cleaning code exists and before any look at the distributions of durations, trips per station or trips per day. Once approved, the rules are fixed for the cleaning run; a change after that goes in a new commit that says why.
+**Status: approved 2026-11-22.** R1–R3 and R6–R8 as proposed; R4 option (c); R5 flag only. Written 2026-11-22, before any cleaning code exists and before any look at the distributions of durations, trips per station or trips per day. The rules are fixed for the cleaning run; a change after this goes in a new commit that says why.
 
 What has been seen of the data so far, all from the load stage (`output/runs/load/20261121T231139Z/`, your Mac): 26 files and 9,540,931 rows, of which 9,068,241 are in the 2025 files 411–434. There are no duplicate trip ids, either within a file or across files, and no value fails to parse. 184 rows have an empty end time, end station and duration. By start time, files 411–434 run from 2025-01-01 00:00 to 2025-12-31 23:59; file 410 is all 2024 and file 435 all 2026. Seen in the first lines of file 421: end station id `200025444` named "London Fields, Hackney Central_OLD".
 
@@ -44,7 +44,11 @@ A trip whose `duration_ms` is empty, zero or negative is removed.
 
 ### R4. Very long trips
 
-**You decide** whether there is an upper limit and, if so, at what value. This is the threshold I am least able to justify. The brief does not ask for one, and I have no source for a value.
+**Decided: (c).** No upper limit in cleaning; no trip is removed for being long. How long trips affect the duration features is decided in the station-profiles note, before any profile is computed.
+
+The options as they were put:
+
+Whether there is an upper limit and, if so, at what value. This is the threshold I am least able to justify. The brief does not ask for one, and I have no source for a value.
 
 - (a) No upper limit. Every trip counts in the totals and the graph. Long trips pull up the mean durations in §3.1.
 - (b) Remove trips longer than a fixed limit, chosen now, before looking at durations: for example 24 hours, taken as a hire that was not a normal ride.
@@ -52,13 +56,15 @@ A trip whose `duration_ms` is empty, zero or negative is removed.
 
 ### R5. Round trips (start station = end station)
 
+**Decided: flag only.** No round trip is removed.
+
 **Proposed:** not removed; flagged with a column `is_round_trip`. Each later stage says what it does with them. In the graph they are self-loops i → i; whether the SBM keeps self-loops is decided in the graph note.
 
 **Other options:**
 - (a) Remove all round trips.
 - (b) Remove only very short round trips, as likely false starts or re-docking: for example under 60 seconds. I have no source for 60 seconds, so this would be our own threshold.
 
-**You decide** between flag-only, (a) and (b).
+The choice was between flag-only, (a) and (b).
 
 ### R6. Duration against start and end times
 
