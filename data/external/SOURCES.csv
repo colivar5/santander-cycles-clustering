@@ -1,0 +1,2 @@
+file,url,retrieved_at_utc,size_bytes,sha256,used_for
+data/external/bikepoint/BikePoint_20261122T125026Z.json,https://api.tfl.gov.uk/BikePoint,2026-11-22T12:50:25Z,2172030,610881faf089a6f4d9e194a377ca0e9a0c4eb6aaa5a6e1b870ac7b84d4a771f2,"station names and coordinates (brief §2.1, optional)"
