@@ -2,6 +2,8 @@
 
 **Status: approved 2026-11-22.** G1–G8 as proposed, G7 with the extra fixed-K fit, G9 (a). Written before `src/graph.py` or `src/sbm.py` exists and before any look at the graph: no edge count, degree, weight distribution or partition has been computed. Once approved, the choices are fixed for the graph and SBM runs; a change after that goes in a new commit that says why.
 
+**Amendment, approved 2026-11-24 (D25), written after looking at the main SBM run.** See G6. G6's main partition and the level at which G3 and G8 compare fits are replaced.
+
 What is known so far, all from the clean stage (`output/runs/clean/20261122T175304Z/` in the cloud, `20261122T175858Z` on your Mac, same SHA-256): 9,067,251 trips kept, 805 station ids after R9, 305,702 round trips (3.37% of trips).
 
 How the stages run (decision D23, approved): `src/graph.py` runs in env_311 and writes the edge list; `src/sbm.py` runs on Homebrew's Python 3.15 (graph-tool 3.9, numpy 2.5.5) and uses nothing else outside the standard library.
@@ -67,6 +69,14 @@ Why: without degree correction, an SBM tends to put stations in blocks by how bu
 ### G6. Flat or nested
 
 **Decided: nested, as proposed.**
+
+**Amendment (D25), after looking.** What was seen (run `output/runs/sbm/20261123T194317Z/`, your Mac): in every fit, level 0 has 801–803 blocks for 805 stations, so the lowest level is almost one block per station. The kept standard fit (seed 51) has 803, 209, 46, 13, 5, 4 and 3 blocks at levels 0–6. Across the 30 fits, level 1 has 173–217 blocks, level 2 36–52, level 3 10–18. At level 0 the NMI of every fit against the kept fit is 0.9994–1.0, and the self-loop comparison gives NMI 0.9996 and ARI 0.333, which describe only the few station pairs sharing a block.
+
+Decided:
+- The SBM partition used to describe the network's structure (§4.2) is **level 2 of the kept fit** of the model G4 keeps.
+- The spread across seeds (G8) and the self-loop comparison (G3) are measured at **every level**, not only the lowest: NMI and ARI between partitions at the same level number. Levels are numbered as written in `blocks.csv`, after leaving out levels identical to the one below.
+- The §4.3 comparison still uses the fixed-K fit (G7).
+- No refit.
 
 **Proposed:** nested (Peixoto, 2014). The model fits a hierarchy of blocks: stations into blocks, blocks into bigger blocks, and so on. The lowest level is the main partition. Higher levels give coarser partitions that can be shown without choosing K by hand.
 
